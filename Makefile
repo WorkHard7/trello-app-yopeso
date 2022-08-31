@@ -13,5 +13,5 @@ migrate:
 composer-install:
 	docker-compose run --entrypoint "composer" backend install
 
-up: cleanup build composer-install #migrate
+up: cleanup build composer-install migrate
 	docker-compose up -d
