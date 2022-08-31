@@ -28,9 +28,9 @@ class Board
     private $background_color;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne("App\Entity\User")
      */
-    private $author_id;
+    private $author;
 
     /**
      * @ORM\Column(type="datetime")
@@ -71,14 +71,14 @@ class Board
         return $this;
     }
 
-    public function getAuthorId(): ?int
+    public function getAuthor(): ?User
     {
-        return $this->author_id;
+        return $this->author;
     }
 
-    public function setAuthorId(int $author_id): self
+    public function setAuthor(?User $user): self
     {
-        $this->author_id = $author_id;
+        $this->author = $user;
 
         return $this;
     }
