@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields="email", message="Email is already taken.")
  */
 class User
 {
@@ -18,12 +22,14 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
+     * @Assert\Email()
      */
-    private $email;
+    protected $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $firstName;
 
@@ -89,4 +95,16 @@ class User
 
         return $this;
     }
+
+//    public static function loadValidatorMetadata(ClassMetadata $metadata)
+//    {
+////        $metadata->addConstraint(new UniqueEntity([
+////            'fields' => 'email',
+////            'errorPath' => 'email',
+////            'message' => 'This email is already in use.',
+////        ]));
+//
+////        $metadata->addPropertyConstraint('email', new Assert\Email());
+//        //$metadata->addPropertyConstraint('firstName', new Assert\NotBlank());
+//    }
 }
