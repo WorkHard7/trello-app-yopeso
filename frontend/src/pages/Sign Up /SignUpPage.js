@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SignUpForm from "./SignUpForm";
-import './SignUpPage.css';
+import './SignUpPage.scss';
 import Logo from "../../components/Logo/Logo";
 
 
