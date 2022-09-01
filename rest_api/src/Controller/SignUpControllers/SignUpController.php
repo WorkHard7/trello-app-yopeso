@@ -21,7 +21,6 @@ class SignUpController extends AbstractController
                           UserRepository $userRepository, UserSerializer $userSerializer
                             ): JsonResponse
     {
-
         $reqBody = $request->getContent();
         $reqBody = json_decode($reqBody, true);
 
@@ -32,14 +31,14 @@ class SignUpController extends AbstractController
              ->setPassword($reqBody['password']);
 
         $errors = $validator->validate($user);
-
         if($errors->count() > 0) {
-            return  new JsonResponse((string)$errors);
+            return new JsonResponse((string)$errors, 400);
         }
+
+        $user->setPassword(password_hash($reqBody['password'], PASSWORD_BCRYPT));
 
         $userRepository->add($user, true);
 
-        $user->setPassword(md5($reqBody['password']));
-        return  $this->json($userSerializer->userToArray($user));
+        return  $this->json($userSerializer->userToArray($user), 200);
     }
 }
