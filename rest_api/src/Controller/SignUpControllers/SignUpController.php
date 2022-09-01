@@ -11,8 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactory;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 class SignUpController extends AbstractController
 {
@@ -23,16 +21,6 @@ class SignUpController extends AbstractController
                           UserRepository $userRepository, UserSerializer $userSerializer
                             ): JsonResponse
     {
-
-//        $passwordHasherFactory = new PasswordHasherFactory([
-//
-//            User::class => ['algorithm' => auto],
-//
-//            PasswordAuthenticatedUserInterface::class => [
-//                'algorithm' => 'auto',
-//                'cost' => 15,
-//            ],
-//        ]);
 
         $reqBody = $request->getContent();
         $reqBody = json_decode($reqBody, true);
@@ -51,6 +39,7 @@ class SignUpController extends AbstractController
 
         $userRepository->add($user, true);
 
+        $user->setPassword(md5($reqBody['password']));
         return  $this->json($userSerializer->userToArray($user));
     }
 }

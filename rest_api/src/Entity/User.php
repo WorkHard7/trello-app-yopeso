@@ -105,7 +105,10 @@ class User extends AbstractType
             'minMessage' => 'Your password must be at least {{ limit }} characters long',
         ]));
 
-//        $metadata->addPropertyConstraint('email', new Assert\Email());
+        $metadata->addPropertyConstraint('email', new Assert\Email([
+            'message' => 'The email "{{ value }} is not a valid email."',
+        ]));
+
 //        $metadata->addPropertyConstraint('firstName', new Assert\NotBlank());
     }
 }
