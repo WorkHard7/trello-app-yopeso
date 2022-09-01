@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import logo from "../../components/Logo/Logo";
 import SnackBar from "../../components/SnackBar/SnackBar";
-import {useForm} from "react-hook-form";
+// import {useForm} from "react-hook-form";
 
 function SignUpForm() {
     const [firstName, setFirstName] = useState('')
