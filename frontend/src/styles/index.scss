@@ -1,0 +1,12 @@
+@use "./components/button.scss";
+
+
+@use "./variables/colors.scss";
+@use "./variables/typography.scss";
+
+
+
+
+body, html{
+    background: var(--light);
+}
