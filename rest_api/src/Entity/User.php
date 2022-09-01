@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
@@ -12,7 +13,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields="email", message="Email is already taken.")
  */
-class User
+class User extends AbstractType
 {
     /**
      * @ORM\Id
@@ -23,7 +24,7 @@ class User
 
     /**
      * @ORM\Column(name="email", type="string", length=255, unique=true)
-     * @Assert\Email()
+     * @Assert\NotBlank
      */
     protected $email;
 
@@ -34,6 +35,7 @@ class User
     private $firstName;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $lastName;
@@ -96,15 +98,17 @@ class User
         return $this;
     }
 
-//    public static function loadValidatorMetadata(ClassMetadata $metadata)
-//    {
-////        $metadata->addConstraint(new UniqueEntity([
-////            'fields' => 'email',
-////            'errorPath' => 'email',
-////            'message' => 'This email is already in use.',
-////        ]));
-//
-////        $metadata->addPropertyConstraint('email', new Assert\Email());
-//        //$metadata->addPropertyConstraint('firstName', new Assert\NotBlank());
-//    }
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('password', new Assert\Length([
+            'min' => 8,
+            'minMessage' => 'Your password must be at least {{ limit }} characters long',
+        ]));
+
+        $metadata->addPropertyConstraint('email', new Assert\Email([
+            'message' => 'The email "{{ value }} is not a valid email."',
+        ]));
+
+//        $metadata->addPropertyConstraint('firstName', new Assert\NotBlank());
+    }
 }

@@ -4,24 +4,23 @@ namespace App\Controller\SignUpControllers;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\UserRepository;
+use App\Serializer\UserSerializer;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+//use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class SignUpController extends AbstractController
 {
-
-
-
     /**
      * @Route("/signup", name="app_signup_page", methods={"POST"})
      */
-    public function index(Request $request, ValidatorInterface $validator, UserRepository $userRepository): JsonResponse
+    public function index(Request $request, ValidatorInterface $validator,
+                          UserRepository $userRepository, UserSerializer $userSerializer
+                            ): JsonResponse
     {
-
 
         $reqBody = $request->getContent();
         $reqBody = json_decode($reqBody, true);
@@ -40,14 +39,7 @@ class SignUpController extends AbstractController
 
         $userRepository->add($user, true);
 
-        return  $this->json(
-            [
-                'id' => $user->getId(),
-                'email' => $user->getEmail(),
-                'first_name' => $user->getFirstName(),
-                'last_name' => $user->getLastName(),
-                'password' => $user->getPassword(),
-            ]
-        );
+        $user->setPassword(md5($reqBody['password']));
+        return  $this->json($userSerializer->userToArray($user));
     }
 }
