@@ -1,13 +1,22 @@
+import './styles/index.scss';
+
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+
+import {Login} from "./pages/Login"
+import {Private} from "./components/Router/Private"
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+  <BrowserRouter>
+    <Routes>
+      <Route path="/signin" element={<Login></Login>}></Route>
+      <Route path="/" element={<Private><div>Protected piece</div></Private>}></Route>
+    </Routes>
+  </BrowserRouter>
   </React.StrictMode>
 );
 
