@@ -2,7 +2,7 @@ import './styles/index.scss';
 
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-import {Login} from "./pages/Login"
+import {Login} from "./pages/Login/Login"
 import {Private} from "./components/Router/Private"
 import React from 'react';
 import ReactDOM from 'react-dom/client';
