@@ -35,13 +35,13 @@ class SignUpController extends AbstractController
 
         $errors = $validator->validate($user);
         if($errors->count() > 0) {
-            return new JsonResponse((string)$errors, 400);
+            return new JsonResponse((string)$errors, 401);
         }
 
         $user->setPassword(password_hash($reqBody['password'], PASSWORD_BCRYPT));
 
         $userRepository->add($user, true);
 
-        return  $this->json($userSerializer->userToArray($user), 200);
+        return  $this->json($userSerializer->userToArray($user));
     }
 }
