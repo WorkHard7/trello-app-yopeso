@@ -57,10 +57,6 @@ class User extends AbstractType implements UserInterface
      */
     private $dateModified;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $token;
 
     public function getId(): ?int
     {
@@ -114,6 +110,44 @@ class User extends AbstractType implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
+    }
+
+    /**
+     * @param mixed $dateCreated
+     */
+    public function setDateCreated($dateCreated)
+    {
+        $this->dateCreated = $dateCreated;
+        return $this;
+    }
+
+
+    public function setDateModified($dateModified)
+    {
+        $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateModified()
+    {
+        return $this->dateModified;
+    }
+
+
+
+
+
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
