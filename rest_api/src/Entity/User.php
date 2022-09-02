@@ -45,6 +45,21 @@ class User extends AbstractType
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateCreated;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateModified;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $token;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,13 +117,35 @@ class User extends AbstractType
     {
         $metadata->addPropertyConstraint('password', new Assert\Length([
             'min' => 8,
-            'minMessage' => 'Your password must be at least {{ limit }} characters long',
+            'minMessage' => 'Your password must be at least {{ limit }} characters long.',
         ]));
 
         $metadata->addPropertyConstraint('email', new Assert\Email([
             'message' => 'The email "{{ value }} is not a valid email."',
         ]));
+    }
 
-//        $metadata->addPropertyConstraint('firstName', new Assert\NotBlank());
+    public function getDateCreated(): ?\DateTimeInterface
+    {
+        return $this->dateCreated;
+    }
+
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
+    {
+        $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    public function getDateModified(): ?\DateTimeInterface
+    {
+        return $this->dateModified;
+    }
+
+    public function setDateModified(\DateTimeInterface $dateModified): self
+    {
+        $this->dateModified = $dateModified;
+
+        return $this;
     }
 }
