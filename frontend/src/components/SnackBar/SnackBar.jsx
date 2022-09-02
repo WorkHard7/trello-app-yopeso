@@ -10,7 +10,7 @@ function SnackBar({text, display, handleDisplay}) {
     return (
         <div className='snackbar-container'>
             <p>{text}</p>
-            <button onClick={handleDisplay}>x</button>
+            <button className={'snackbar-btn'} onClick={handleDisplay}>x</button>
         </div>
     );
 }

@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import logo from "../../components/Logo/Logo";
 import SnackBar from "../../components/SnackBar/SnackBar";
-// import {useForm} from "react-hook-form";
+
 
 function SignUpForm() {
     const [firstName, setFirstName] = useState('')
@@ -14,7 +14,7 @@ function SignUpForm() {
     const [confirmedPassword, setConfirmedPassword] = useState('')
     const [displaySnackbar, setDisplaySnackbar] = useState(false)
     const [snackbarText, setSnackbarText] = useState('')
-    // const {register, handleSubmit, watch, formState: {errors}} = useForm();
+    const [invalidEmail, setInvalidEmail] = useState('')
 
     // console.log('f n--->', firstName);
     // console.log('l n--->', lastName);
@@ -48,21 +48,25 @@ function SignUpForm() {
         } else if (!isValidEmail(email)) {
             handleSnackbar('Email is invalid', true)
         } else if (password.length < 8) {
-            handleSnackbar('Password ,must be at least 8 characters long', true)
+            handleSnackbar('Password must be at least 8 characters long', true)
         } else if (password !== confirmedPassword) {
             handleSnackbar('Passwords do not match', true)
         }
 
         console.log('Clicked')
 
-        axios.post('http://localhost:8089/signup',
-            {
-                email: email,
-                first_name: capitalizedFirstName,
-                last_name: capitalizedLastName,
-                password: password
+        axios.post('http://localhost:8089/signup', {
+            email: email, first_name: capitalizedFirstName, last_name: capitalizedLastName, password: password
+        })
+            .then((response) => {
+                if (response.ok) {
+                    console.log(response)
+                } else {
+                    setInvalidEmail(response.data)
+                    return (handleSnackbar('Email is already taken!', true))
+                }
+
             })
-            .then(response => console.log(response))
             .catch(error => {
                 console.error('There was an error!', error);
             });
@@ -89,38 +93,36 @@ function SignUpForm() {
         }
     }
 
-    return (
-        <div className='signup-card'>
-            <h2>Sign up for your account</h2>
-            <label>First Name</label>
-            <input placeholder={'First Name'} id={'firstName'} onChange={handleInputs}
-                   value={firstName} type={'text'}/>
+    return (<div className='signup-card'>
+        <h2>Sign up for your account</h2>
+        <label>First Name</label>
+        <input placeholder={'First Name'} id={'firstName'} onChange={handleInputs}
+               value={firstName} type={'text'}/>
 
-            <label>Last Name</label>
-            <input placeholder={'Last Name'} id={'lastName'} onChange={handleInputs}
-                   value={lastName} type={'text'}/>
+        <label>Last Name</label>
+        <input placeholder={'Last Name'} id={'lastName'} onChange={handleInputs}
+               value={lastName} type={'text'}/>
 
-            <label>Email</label>
-            <input placeholder={'Enter Email'} id={'email'} onChange={handleInputs}
-                   value={email} type={'text'}/>
+        <label>Email</label>
+        <input placeholder={'Enter Email'} id={'email'} onChange={handleInputs}
+               value={email} type={'text'}/>
 
-            <label>Password</label>
-            <input placeholder={'Enter Password'} id={"password"} onChange={handleInputs}
-                   value={password} type={'password'}/>
+        <label>Password</label>
+        <input placeholder={'Enter Password'} id={"password"} onChange={handleInputs}
+               value={password} type={'password'}/>
 
-            <label>Confirm Password</label>
-            <input placeholder={'Confirm Password'} id={"passwordConfirmation"} onChange={handleInputs}
-                   value={confirmedPassword} type={'password'}/>
+        <label>Confirm Password</label>
+        <input placeholder={'Confirm Password'} id={"passwordConfirmation"} onChange={handleInputs}
+               value={confirmedPassword} type={'password'}/>
 
-            <button onClick={handleSubmit}>Sign Up</button>
+        <button onClick={handleSubmit}>Sign Up</button>
 
-            <div className='redirect-login'>
-                <h3>Already have an account?</h3>
-                <Link to={'/signin'}>Sign in</Link>
-            </div>
-            <SnackBar handleDisplay={handleDisplaySnackbar} text={snackbarText} display={displaySnackbar}/>
+        <div className='redirect-login'>
+            <h3>Already have an account?</h3>
+            <Link to={'/signin'}>Sign in</Link>
         </div>
-    );
+        <SnackBar handleDisplay={handleDisplaySnackbar} text={snackbarText} display={displaySnackbar}/>
+    </div>);
 }
 
 export default SignUpForm;
