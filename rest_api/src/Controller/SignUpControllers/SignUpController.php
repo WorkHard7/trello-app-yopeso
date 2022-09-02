@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class SignUpController extends AbstractController
 {
     /**
-     * @Route("/signup", name="app_signup_page", methods={"POST"})
+     * @Route("/api/signup", name="app_signup_page", methods={"POST"})
      */
     public function index(Request $request, ValidatorInterface $validator,
                           UserRepository $userRepository, UserSerializer $userSerializer
