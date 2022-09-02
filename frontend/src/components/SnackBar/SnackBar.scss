@@ -1,12 +1,11 @@
 .snackbar-container {
-  min-width: 200px;
+  color: white;
   position: absolute;
-  background: #e3e39a;
+  background: #8ba9b2;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  //padding: 5px 10px 5px 10px;
   padding-left: 10px;
   padding-right: 10px;
   box-sizing: content-box;
@@ -23,12 +22,12 @@
     padding: 1px;
     background: none;
     border-radius: 50%;
-    border: 1px solid black;
-    color: black;
+    border: 1px solid white;
+    color: white;
   }
 
   .snackbar-btn:hover {
-    background: black;
-    color: white;
+    background: white;
+    color: black;
   }
 }

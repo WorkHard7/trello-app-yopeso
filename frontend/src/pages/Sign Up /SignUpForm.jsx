@@ -2,8 +2,8 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import logo from "../../components/Logo/Logo";
 import SnackBar from "../../components/SnackBar/SnackBar";
+import {useNavigate} from "react-router-dom";
 
 
 function SignUpForm() {
@@ -14,13 +14,10 @@ function SignUpForm() {
     const [confirmedPassword, setConfirmedPassword] = useState('')
     const [displaySnackbar, setDisplaySnackbar] = useState(false)
     const [snackbarText, setSnackbarText] = useState('')
-    const [invalidEmail, setInvalidEmail] = useState('')
+    const [invalidEmail, setInvalidEmail] = useState(0)
 
-    // console.log('f n--->', firstName);
-    // console.log('l n--->', lastName);
-    // console.log('em--->', email);
-    // console.log('pwd--->', password);
-    // console.log('c pwd--->', confirmedPassword);
+    const navigate = useNavigate();
+
 
     function isValidEmail(email) {
         return /\S+@\S+\.\S+/.test(email);
@@ -45,6 +42,8 @@ function SignUpForm() {
 
         if (capitalizedFirstName.length === 0 || capitalizedLastName.length === 0) {
             handleSnackbar('First name and last name must be completed', true)
+        } else if (email.length === 0) {
+            handleSnackbar('Email field is mandatory!', true)
         } else if (!isValidEmail(email)) {
             handleSnackbar('Email is invalid', true)
         } else if (password.length < 8) {
@@ -59,16 +58,18 @@ function SignUpForm() {
             email: email, first_name: capitalizedFirstName, last_name: capitalizedLastName, password: password
         })
             .then((response) => {
-                if (response.ok) {
-                    console.log(response)
-                } else {
-                    setInvalidEmail(response.data)
-                    return (handleSnackbar('Email is already taken!', true))
+                if (response.status === 200) {
+                    return navigate('/signin')
                 }
-
             })
             .catch(error => {
-                console.error('There was an error!', error);
+                if (error) {
+                    console.error(error);
+                    if (error.response.status === 401) {
+                        // setInvalidEmail(response.status)
+                        return (handleSnackbar("Email is already taken!", true))
+                    }
+                }
             });
     }
 
