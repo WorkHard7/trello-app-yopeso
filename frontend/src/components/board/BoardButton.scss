@@ -1,0 +1,169 @@
+/* Global styling
+------------------------> */
+
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+body, button, a {
+  font-family: var(--mainFont);
+}
+
+:root{
+  font-size: 66.6%;
+}
+
+html {
+  padding: 0;
+  margin: 0;
+}
+
+/* Create board button styling
+ -------------------------------------> */
+.fadeOut {
+  animation: closingCreateBoard 1s ease-in-out forwards;
+}
+
+.fadeIn {
+  animation: openingCreateBoard 1s ease-in-out forwards;
+}
+
+.create-board-main{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.create-board-top {
+  width: 20rem;
+  margin: 2rem;
+}
+
+.create-board-container {
+  border: 2px solid lightgray;
+  width: 24rem;
+  box-shadow: 5px 5px 10px gray;
+  margin: 2rem;
+
+  .create-board {
+    width: 24rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: .5rem 2rem 2rem 2rem;
+
+    .create-board-title {
+      padding: 1rem 0;
+      color: gray;
+      font-size: 1.5rem;
+    }
+
+    .line {
+      width: 100%;
+      height: 1px;
+      background-color: gray;
+      margin-bottom: 4rem;
+    }
+
+    .create-board-bg {
+      width: 100%;
+
+      .create-board-background {
+        font-size: 1.2rem;
+        color: gray;
+        font-weight: 600;
+      }
+    }
+
+    button:hover {
+      background-color: blue;
+    }
+
+    .createBtn {
+      width: 100%;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      padding: .8rem;
+      border-radius: 3px;
+      transition: all 0.3s ease-in-out;
+      background-color: RGBA(3, 61, 252, .5);
+      color: white;
+    }
+  }
+}
+
+.create-board-btn {
+  width: 20rem;
+  height: 9rem;
+  font-size: 1.5rem;
+  border: none;
+  padding: 2.5rem 3rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 7px;
+  transition: all .5s ease-in-out;
+
+  &:hover {
+    background-color: #DDDDDD;
+  }
+}
+
+.create-board {
+  padding: 2rem;
+}
+
+.title-input {
+  .board-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: gray;
+  }
+
+  .board-title-input {
+    margin: .4rem 0 3rem 0;
+    width: 100%;
+    outline-color: #5eb5e0;
+    padding: .7rem 1rem;
+  }
+}
+
+.color-blocks {
+  display: flex;
+  gap: .2rem;
+}
+
+.color-block {
+  width: 3.8rem;
+  height: 3.8rem;
+  cursor: pointer;
+  margin: .7rem 0 2rem 0;
+}
+
+.active {
+  border: 2px solid black;
+}
+
+
+/* Animation Section
+ ---------------------------> */
+
+@keyframes openingCreateBoard {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes closingCreateBoard {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
