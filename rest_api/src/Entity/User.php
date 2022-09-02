@@ -127,7 +127,6 @@ class User extends AbstractType implements UserInterface
         ]));
     }
 
-<<<<<<< HEAD
     public function getRoles()
     {
         return [];
@@ -151,29 +150,6 @@ class User extends AbstractType implements UserInterface
     public function __call($name, $arguments)
     {
         // TODO: Implement @method string getUserIdentifier()
-=======
-    public function getDateCreated(): ?\DateTimeInterface
-    {
-        return $this->dateCreated;
-    }
 
-    public function setDateCreated(\DateTimeInterface $dateCreated): self
-    {
-        $this->dateCreated = $dateCreated;
-
-        return $this;
-    }
-
-    public function getDateModified(): ?\DateTimeInterface
-    {
-        return $this->dateModified;
-    }
-
-    public function setDateModified(\DateTimeInterface $dateModified): self
-    {
-        $this->dateModified = $dateModified;
-
-        return $this;
->>>>>>> main
     }
 }
