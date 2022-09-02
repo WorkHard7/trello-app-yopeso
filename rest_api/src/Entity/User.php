@@ -4,16 +4,11 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields="email", message="Email is already taken.")
  */
-class User extends AbstractType
+class User
 {
     /**
      * @ORM\Id
@@ -23,19 +18,16 @@ class User extends AbstractType
     private $id;
 
     /**
-     * @ORM\Column(name="email", type="string", length=255, unique=true)
-     * @Assert\NotBlank
+     * @ORM\Column(type="string", length=255)
      */
-    protected $email;
+    private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
      */
     private $firstName;
 
     /**
-     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $lastName;
@@ -44,21 +36,6 @@ class User extends AbstractType
      * @ORM\Column(type="string", length=255)
      */
     private $password;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $dateCreated;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $dateModified;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $token;
 
     public function getId(): ?int
     {
@@ -109,42 +86,6 @@ class User extends AbstractType
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
-        return $this;
-    }
-
-    public static function loadValidatorMetadata(ClassMetadata $metadata)
-    {
-        $metadata->addPropertyConstraint('password', new Assert\Length([
-            'min' => 8,
-            'minMessage' => 'Your password must be at least {{ limit }} characters long.',
-        ]));
-
-        $metadata->addPropertyConstraint('email', new Assert\Email([
-            'message' => 'The email "{{ value }} is not a valid email."',
-        ]));
-    }
-
-    public function getDateCreated(): ?\DateTimeInterface
-    {
-        return $this->dateCreated;
-    }
-
-    public function setDateCreated(\DateTimeInterface $dateCreated): self
-    {
-        $this->dateCreated = $dateCreated;
-
-        return $this;
-    }
-
-    public function getDateModified(): ?\DateTimeInterface
-    {
-        return $this->dateModified;
-    }
-
-    public function setDateModified(\DateTimeInterface $dateModified): self
-    {
-        $this->dateModified = $dateModified;
 
         return $this;
     }
