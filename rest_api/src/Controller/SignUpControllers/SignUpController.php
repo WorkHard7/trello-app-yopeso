@@ -7,6 +7,7 @@ use App\Repository\UserRepository;
 use App\Serializer\UserSerializer;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
+use DateTime;
 //use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -28,7 +29,9 @@ class SignUpController extends AbstractController
         $user->setEmail($reqBody['email'])
              ->setFirstName($reqBody['first_name'])
              ->setLastName($reqBody['last_name'])
-             ->setPassword($reqBody['password']);
+             ->setPassword($reqBody['password'])
+             ->setDateCreated(new DateTime())
+             ->setDateModified(new DateTime());
 
         $errors = $validator->validate($user);
         if($errors->count() > 0) {
