@@ -65,7 +65,7 @@ function SignUpForm() {
             .catch(error => {
                 if (error) {
                     console.error(error);
-                    if (error.response.status === 401) {
+                    if (error.response.data === "Object(App\\Entity\\User).email:\n    Email is already taken. (code 23bd9dbf-6b9b-41cd-a99e-4844bcf3077f)\n") {
                         // setInvalidEmail(response.status)
                         return (handleSnackbar("Email is already taken!", true))
                     }
