@@ -14,6 +14,8 @@ class UserSerializer
             'firstName' => $user->getFirstName(),
             'lastName' => $user->getLastName(),
             'password' => $user->getPassword(),
+            'created' => $user->getDateCreated()->getTimestamp(),
+            'modified' => $user->getDateModified()->getTimestamp()
         ];
     }
 }

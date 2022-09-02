@@ -54,7 +54,7 @@ function SignUpForm() {
 
         console.log('Clicked')
 
-        axios.post('http://localhost:8089/signup', {
+        axios.post('http://localhost:8089/api/signup', {
             email: email, first_name: capitalizedFirstName, last_name: capitalizedLastName, password: password
         })
             .then((response) => {
