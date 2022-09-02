@@ -55,6 +55,11 @@ class User extends AbstractType
      */
     private $dateModified;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $token;
+
     public function getId(): ?int
     {
         return $this->id;
