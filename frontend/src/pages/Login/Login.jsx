@@ -4,7 +4,7 @@ import {LoginCard} from "../../components/Login/LoginCard"
 export const Login = () => {
     return (
 
-    <div class="login">
+    <div className="login">
         <h1>Trello</h1>
         <LoginCard/>
     </div>
