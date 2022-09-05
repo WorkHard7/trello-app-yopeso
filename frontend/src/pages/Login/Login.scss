@@ -1,3 +1,18 @@
 .login {
     text-align: center;
 }
+
+.login-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 190px;
+    margin: 50px auto;
+
+        h1 {
+            font-size: 50px;
+            margin: 0;
+            color: rgb(38, 57, 87);
+        }
+
+}

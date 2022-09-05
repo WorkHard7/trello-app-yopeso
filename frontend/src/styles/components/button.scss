@@ -3,5 +3,10 @@
     background: var(--primary);
     border: none;
     border-radius: 3px;
+    cursor: pointer;
     color: var(--light);
+    transition: all 500ms;
+    &:hover {
+        opacity: 0.7;
+    }
 }
