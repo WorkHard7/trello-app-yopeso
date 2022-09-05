@@ -12,8 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class GetBoardListingController extends AbstractController
 {
     /**
-     * @Route("/api/boards/{userId}",
-     *      requirements={"userId"="\d+"},
+     * @Route("/api/boards",
      *      name="app_get_board_listing",
      *     methods={"GET"})
      */
