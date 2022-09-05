@@ -18,6 +18,7 @@ class CreateBoardController extends AbstractController
      */
     public function index(Request $request, BoardSerializer $boardSerializer, BoardRepository $boardRepository): JsonResponse
     {
+
         $user = $this->getUser();
 
         $reqBody = $request->getContent();
