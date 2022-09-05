@@ -5,10 +5,8 @@ lexik_jwt_authentication:
   token_ttl: 7200 # in seconds, default is 3600
 
   token_extractors:
-    cookie:
+    authorization_header:
       enabled: true
-      name: BEARER
-
-  set_cookies:
-    BEARER: ~
+      prefix: Bearer
+      name: Authorization
 
