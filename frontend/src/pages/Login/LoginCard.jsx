@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './LoginCard.scss'
-import { useState } from 'react';
+import axios from 'axios';
+import {useNavigate} from "react-router-dom";
 
 export const LoginCard = () => {
+
+    const navigate = useNavigate();
 
     const [passwordValidation, setPasswordValidation] = useState(0);
 
@@ -10,6 +13,19 @@ export const LoginCard = () => {
 
     const handleSubmit = (e) => {
       e.preventDefault();
+        axios.post('http://localhost:8089/api/signin',
+            {
+                username: 'gg@gmail.com',
+                password: '012343210'
+            })
+            .then((res)=>{
+                if(res.status === 204){
+                    console.log(res);
+                } else {
+                    console.log('Error');
+                }
+            })
+
     }
 
 
@@ -18,18 +34,18 @@ export const LoginCard = () => {
     <div className='login-card'>
         <div className='content-wrapper'>
 
-        <h3>Log in to Trello</h3>
+        <h2>Log in to Trello</h2>
 
         <form className='login-form' onSubmit={handleSubmit}>
 
         <input type="email" placeholder='Enter email' className='inpt' required/>
 
-        <input type="password" placeholder='Enter password' className='inpt' paswordrules="minlength:8" required 
+        <input type="password" placeholder='Enter password' className='inpt' required
         
         onChange= {e => setPasswordValidation(e.target.value.length)}/>
 
         {passwordValidation > 7 ? <p style={{color:"green"}}>Password looks good.</p> : passwordValidation === 0 ? <></> : <p style={{color:"red"}}>Password too short!</p>}
-        <button className='btn'>Log in</button>
+            <button className='btn'>Log in</button>
 
         </form>
         </div>
