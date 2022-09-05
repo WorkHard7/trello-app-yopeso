@@ -1,0 +1,33 @@
+.snackbar-container {
+  color: white;
+  position: absolute;
+  background: #8ba9b2;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: content-box;
+  border-radius: 7px;
+  margin-top: 490px;
+  margin-left: 400px;
+}
+
+.snackbar-container {
+  .snackbar-btn {
+    margin: 0 0 0 5px;
+    height: 20px;
+    width: 20px;
+    padding: 1px;
+    background: none;
+    border-radius: 50%;
+    border: 1px solid white;
+    color: white;
+  }
+
+  .snackbar-btn:hover {
+    background: white;
+    color: black;
+  }
+}
