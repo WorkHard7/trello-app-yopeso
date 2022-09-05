@@ -1,11 +1,17 @@
 import "./Login.scss"
-import {LoginCard} from "../../components/Login/LoginCard"
+import Logo from '../../components/Logo/Logo'
+import { LoginCard } from "./LoginCard"
 
 export const Login = () => {
     return (
 
     <div className="login">
-        <h1>Trello</h1>
+
+        <div className="login-header">
+            <Logo/>
+            <h1>Trello</h1>
+        </div>
+
         <LoginCard/>
     </div>
     

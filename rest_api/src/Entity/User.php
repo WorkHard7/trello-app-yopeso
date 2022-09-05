@@ -57,7 +57,6 @@ class User extends AbstractType implements UserInterface
      */
     private $dateModified;
 
-
     public function getId(): ?int
     {
         return $this->id;
@@ -111,43 +110,29 @@ class User extends AbstractType implements UserInterface
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDateCreated()
+    public function getDateCreated(): ?\DateTimeInterface
     {
         return $this->dateCreated;
     }
 
-    /**
-     * @param mixed $dateCreated
-     */
-    public function setDateCreated($dateCreated)
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
         $this->dateCreated = $dateCreated;
+
         return $this;
     }
 
+    public function getDateModified(): ?\DateTimeInterface
+    {
+        return $this->dateModified;
+    }
 
-    public function setDateModified($dateModified)
+    public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
 
         return $this;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getDateModified()
-    {
-        return $this->dateModified;
-    }
-
-
-
-
-
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
