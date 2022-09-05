@@ -1,5 +1,6 @@
 import "./Login.scss"
-import {LoginCard} from "../../components/Login/LoginCard"
+
+import { LoginCard } from "../../components/Login/LoginCard"
 
 export const Login = () => {
     return (
