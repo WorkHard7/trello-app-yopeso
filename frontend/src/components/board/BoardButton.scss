@@ -9,10 +9,6 @@ body, button, a {
   font-family: var(--mainFont);
 }
 
-:root{
-  font-size: 66.6%;
-}
-
 html {
   padding: 0;
   margin: 0;
@@ -43,6 +39,7 @@ html {
   width: 24rem;
   box-shadow: 5px 5px 10px gray;
   margin: 2rem;
+
 
   .create-board {
     width: 24rem;
