@@ -12,34 +12,30 @@ use Symfony\Component\Routing\Annotation\Route;
 class GetBoardListingController extends AbstractController
 {
     /**
-     * @Route("/boards/{userId}",
+     * @Route("/api/boards/{userId}",
      *      requirements={"userId"="\d+"},
      *      name="app_get_board_listing",
      *     methods={"GET"})
      */
-    public function index(int             $userId,
-                          BoardRepository $boardRepository,
+    public function index(BoardRepository $boardRepository,
                           BoardSerializer $boardSerializer
     ): Response
     {
-        // $user = $this->getUser();
-        $securityContext = $this->container->get('security.authorization_checker');
-        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $boards = $boardRepository->findBy(['author' => $userId]);
-            if (!$boards) {
-                return $this->json([]);
-            }
-            $results = [];
-            foreach ($boards as $item) {
-                $results[] = $boardSerializer->boardToArray($item);
-            }
-            return $this->json(
-                $results
-            );
-        } else {
-            return $this->json(
-                Response::HTTP_UNAUTHORIZED
-            );
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->json('User not authenticated', Response::HTTP_UNAUTHORIZED);
         }
+        $boards = $boardRepository->findBy(['author' => $user]);
+        if (!$boards) {
+            return $this->json([]);
+        }
+        $results = [];
+        foreach ($boards as $item) {
+            $results[] = $boardSerializer->boardToArray($item);
+        }
+        return $this->json(
+            $results, Response::HTTP_OK
+        );
     }
+
 }

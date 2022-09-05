@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RetrieveUserIdController extends AbstractController
 {
     /**
-     * @Route("/boards/retrieveId/{email}", requirements={"email" = "^.{1,50}$"},  name="app_retrieve_user_id", methods={"GET"})
+     * @Route("/boards/retrieveId/{email}", requirements={"email"="^.{1,50}$"},  name="app_retrieve_user_id", methods={"GET"})
      */
     public function index(UserRepository $userRepository,
                           string         $email,
