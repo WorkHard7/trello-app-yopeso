@@ -1,0 +1,10 @@
+@use "./components/button.scss";
+@use "./components/input.scss";
+@use "./variables/colors.scss";
+@use "./variables/typography.scss";
+@use "./variables/fonts.scss";
+
+body, html{
+    background: var(--light);
+    font-family: var(--mainFont);
+}
