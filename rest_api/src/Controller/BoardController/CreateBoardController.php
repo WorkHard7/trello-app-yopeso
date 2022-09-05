@@ -28,7 +28,7 @@ class CreateBoardController extends AbstractController
         }
 
         if(!isset($reqBody["color"])){
-            return $this->json(["color"=>"title field is required"],400);
+            return $this->json(["error"=>"color field is required"],400);
         }
 
         $board = new Board();
