@@ -22,23 +22,24 @@ class GetBoardListingController extends AbstractController
                           BoardSerializer $boardSerializer
     ): Response
     {
-        $user = $this->getUser();
-        var_dump($user);
-        if (!$user) {
+        // $user = $this->getUser();
+        $securityContext = $this->container->get('security.authorization_checker');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $boards = $boardRepository->findBy(['author' => $userId]);
+            if (!$boards) {
+                return $this->json([]);
+            }
+            $results = [];
+            foreach ($boards as $item) {
+                $results[] = $boardSerializer->boardToArray($item);
+            }
+            return $this->json(
+                $results
+            );
+        } else {
             return $this->json(
                 Response::HTTP_UNAUTHORIZED
             );
         }
-        $boards = $boardRepository->findBy(['author' => $userId]);
-        if (!$boards) {
-            return $this->json([]);
-        }
-        $results = [];
-        foreach ($boards as $item) {
-            $results[] = $boardSerializer->boardToArray($item);
-        }
-        return $this->json(
-            $results
-        );
     }
 }
