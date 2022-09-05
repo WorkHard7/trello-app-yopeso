@@ -30,19 +30,18 @@ html {
 }
 
 .create-board-top {
-  width: 20rem;
-  margin: 2rem;
+  width: 13rem;
+  margin: 1.3rem;
 }
 
 .create-board-container {
   border: 2px solid lightgray;
-  width: 24rem;
+  width: 18rem;
   box-shadow: 5px 5px 10px gray;
-  margin: 2rem;
-
+  margin: 1.3rem;
 
   .create-board {
-    width: 24rem;
+    width: 18rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,23 +49,23 @@ html {
     padding: .5rem 2rem 2rem 2rem;
 
     .create-board-title {
-      padding: 1rem 0;
+      padding: .7rem 0;
       color: gray;
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
 
     .line {
       width: 100%;
       height: 1px;
       background-color: gray;
-      margin-bottom: 4rem;
+      margin-bottom: 2.5rem;
     }
 
     .create-board-bg {
       width: 100%;
 
       .create-board-background {
-        font-size: 1.2rem;
+        font-size: .8rem;
         color: gray;
         font-weight: 600;
       }
@@ -81,7 +80,7 @@ html {
       font-weight: 600;
       cursor: pointer;
       border: none;
-      padding: .8rem;
+      padding: .6rem;
       border-radius: 3px;
       transition: all 0.3s ease-in-out;
       background-color: RGBA(3, 61, 252, .5);
@@ -91,11 +90,11 @@ html {
 }
 
 .create-board-btn {
-  width: 20rem;
-  height: 9rem;
-  font-size: 1.5rem;
+  width: 13rem;
+  height: 6rem;
+  font-size: 1rem;
   border: none;
-  padding: 2.5rem 3rem;
+  padding: 1.8rem 2rem;
   font-weight: 500;
   cursor: pointer;
   border-radius: 7px;
@@ -107,12 +106,12 @@ html {
 }
 
 .create-board {
-  padding: 2rem;
+  padding: 1.3rem;
 }
 
 .title-input {
   .board-title {
-    font-size: 1.2rem;
+    font-size: .8rem;
     font-weight: 600;
     color: gray;
   }
@@ -131,8 +130,8 @@ html {
 }
 
 .color-block {
-  width: 3.8rem;
-  height: 3.8rem;
+  width: 2.6rem;
+  height: 2.6rem;
   cursor: pointer;
   margin: .7rem 0 2rem 0;
 }
@@ -163,4 +162,3 @@ html {
     visibility: hidden;
   }
 }
-
