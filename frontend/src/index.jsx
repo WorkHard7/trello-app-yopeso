@@ -21,7 +21,7 @@ root.render(
       <Route path="/" element={<Private><div>Protected piece</div></Private>}></Route>
       <Route path="/signup" element={<SignUpPage></SignUpPage>}></Route>
       <Route path="/signin" element={<Login></Login>}></Route>
-      <Route path="/create" element={<CreateBoardButton/>}/>
+      <Route path="/board/create" element={<CreateBoardButton/>}/>
       <Route path="/board/id" element={<DataFetching/>}/>
     </Routes>
   </BrowserRouter>
