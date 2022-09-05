@@ -12,10 +12,10 @@ security:
         property: 'email'
   firewalls:
     login:
-      pattern: ^/api/login
+      pattern: ^/api/signin
       stateless: true
       json_login:
-        check_path: /api/login
+        check_path: /api/signin
         success_handler: lexik_jwt_authentication.handler.authentication_success
         failure_handler: lexik_jwt_authentication.handler.authentication_failure
     api:
@@ -38,7 +38,7 @@ security:
   # Easy way to control access for large sections of your site
   # Note: Only the *first* access control that matches will be used
   access_control:
-    - { path: ^/api/login, roles: PUBLIC_ACCESS }
+    - { path: ^/api/signin, roles: PUBLIC_ACCESS }
     - { path: ^/api/signup, roles: PUBLIC_ACCESS }
     - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
 
