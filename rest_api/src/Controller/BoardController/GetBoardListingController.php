@@ -20,10 +20,15 @@ class GetBoardListingController extends AbstractController
     public function index(int             $userId,
                           BoardRepository $boardRepository,
                           BoardSerializer $boardSerializer
-                          ): Response
+    ): Response
     {
-        // test to see if user is authenticated
-
+        $user = $this->getUser();
+        var_dump($user);
+        if (!$user) {
+            return $this->json(
+                Response::HTTP_UNAUTHORIZED
+            );
+        }
         $boards = $boardRepository->findBy(['author' => $userId]);
         if (!$boards) {
             return $this->json([]);
