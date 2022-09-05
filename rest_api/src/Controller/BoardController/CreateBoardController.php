@@ -16,7 +16,7 @@ class CreateBoardController extends AbstractController
     /**
      * @Route("/api/boards", name="app_create_board", methods={"POST"})
      */
-    public function index(Request $request, BoardSerializer $boardSerializer): JsonResponse
+    public function index(Request $request, BoardSerializer $boardSerializer, BoardRepository $boardRepository): JsonResponse
     {
         $user = $this->getUser();
 
@@ -38,6 +38,7 @@ class CreateBoardController extends AbstractController
             ->setCreated(new \DateTime())
             ->setModified(new \DateTime());
 
+        $boardRepository->add($board,true);
 
         return $this->json($boardSerializer->boardToArray($board));
     }
