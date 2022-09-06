@@ -18,7 +18,6 @@ root.render(
       <Route path="/" element={<Private><div>Protected piece</div></Private>}></Route>
       <Route path="/signup" element={<SignUpPage></SignUpPage>}></Route>
       <Route path="/signin" element={<Login></Login>}></Route>
-      <Route path="/board/id" element={<DataFetching/>}/>
       <Route path="/board/create" element={<CreateNewBoard/>}/>
       <Route path="*" element={<Private><Navigate replace to="/"/></Private>}/>
     </Routes>
