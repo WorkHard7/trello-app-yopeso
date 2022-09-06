@@ -23,4 +23,12 @@
         * password (mandatory): string
 
 
+
+* Home page: http://localhost:3000/
+  * API Endpoint: http://localhost:8089/api/boards
+  * method allowed: GET
+  * parameters: none
+
+
+
     
