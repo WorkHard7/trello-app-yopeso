@@ -27,6 +27,14 @@
             color: rgb(95, 109, 131);
         }
 
+    p{
+        font-size: var(--text-sm);
+    }
+
+    .errorMessage {
+        color: red;
+    }
+
 }
 
 

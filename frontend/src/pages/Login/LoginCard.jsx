@@ -1,30 +1,48 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import './LoginCard.scss'
 import axios from 'axios';
-import {useNavigate} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export const LoginCard = () => {
 
     const navigate = useNavigate();
 
-    const [passwordValidation, setPasswordValidation] = useState(0);
+    const [passwordValidation, setPasswordValidation] = useState(true);
+
+    const [email, setEmail] = useState('');
+
+    const [password, setPassword] = useState('');
+
+    const [errorMessage, setErrorMessage] = useState(false);
 
 
 
     const handleSubmit = (e) => {
-      e.preventDefault();
-        axios.post('http://localhost:8089/api/signin',
-            {
-                username: 'gg@gmail.com',
-                password: '012343210'
-            })
-            .then((res)=>{
-                if(res.status === 204){
-                    console.log(res);
-                } else {
-                    console.log('Error');
-                }
-            })
+        e.preventDefault();
+
+        if(password.length >= 8 ){
+
+            setPasswordValidation(true);
+
+            axios.post('http://localhost:8089/api/signin',
+                {
+                    username: `${email}`,
+                    password: `${password}`
+                })
+                .then((res)=>{
+                    if (res.data){
+                        localStorage.setItem('JWT', res.data.token);
+                        navigate('/')
+                    }
+                }).catch(
+                err=>{
+                    setErrorMessage(true);
+                })
+
+        } else
+        {
+            setPasswordValidation(false);
+        }
 
     }
 
@@ -34,19 +52,24 @@ export const LoginCard = () => {
     <div className='login-card'>
         <div className='content-wrapper'>
 
-        <h2>Log in to Trello</h2>
+        <h2>Sign in to Task Manager</h2>
 
         <form className='login-form' onSubmit={handleSubmit}>
 
-        <input type="email" placeholder='Enter email' className='inpt' required/>
+        <input type="email" placeholder='Enter email' className='inpt' onChange={e => setEmail(e.target.value)} required/>
 
         <input type="password" placeholder='Enter password' className='inpt' required
         
-        onChange= {e => setPasswordValidation(e.target.value.length)}/>
+        onChange= {e => {
+            setPassword(e.target.value)
+        } }/>
 
-        {passwordValidation > 7 ? <p style={{color:"green"}}>Password looks good.</p> : passwordValidation === 0 ? <></> : <p style={{color:"red"}}>Password too short!</p>}
-            <button className='btn'>Log in</button>
+            <button className='btn'>Sign in</button>
 
+            {!passwordValidation ? <p className="errorMessage">Password must be at least 8 characters long.</p> : errorMessage && <p className="errorMessage">Invalid credentials.</p>}
+
+
+            <p style={{color: "rgb(75, 89, 111)"}}>Don't have an account? <Link to="/signup">Sign up!</Link></p>
         </form>
         </div>
     </div>
