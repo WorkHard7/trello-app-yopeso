@@ -21,6 +21,7 @@
     * parameters:
         * email (mandatory): string
         * password (mandatory): string
+    * redirects to home page
 
 
 
