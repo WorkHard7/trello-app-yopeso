@@ -9,7 +9,7 @@ export const Login = () => {
 
         <div className="login-header">
             <Logo/>
-            <h1>Trello</h1>
+            <h1>Tasks</h1>
         </div>
 
         <LoginCard/>
