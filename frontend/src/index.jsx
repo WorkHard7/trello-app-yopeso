@@ -4,8 +4,7 @@ import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
 
 import {Login} from "./pages/Login/Login"
 import {Private} from "./components/Router/Private"
-import CreateBoardButton from "./components/board/CreateBoardButton";
-import DataFetching from "./components/dataFetching/DataFetching";
+import CreateNewBoard from "./components/board/CreateNewBoard";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
@@ -19,8 +18,8 @@ root.render(
       <Route path="/" element={<Private><div>Protected piece</div></Private>}></Route>
       <Route path="/signup" element={<SignUpPage></SignUpPage>}></Route>
       <Route path="/signin" element={<Login></Login>}></Route>
-      <Route path="/board/create" element={<CreateBoardButton/>}/>
       <Route path="/board/id" element={<DataFetching/>}/>
+      <Route path="/board/create" element={<CreateNewBoard/>}/>
       <Route path="*" element={<Private><Navigate replace to="/"/></Private>}/>
     </Routes>
   </BrowserRouter>

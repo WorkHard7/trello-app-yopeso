@@ -30,7 +30,7 @@ export const LoginCard = () => {
                     password: `${password}`
                 })
                 .then((res)=>{
-                    if (res.data){
+                    if (res.data.token){
                         localStorage.setItem('JWT', res.data.token);
                         navigate('/')
                     }
@@ -69,7 +69,7 @@ export const LoginCard = () => {
             {!passwordValidation ? <p className="errorMessage">Password must be at least 8 characters long.</p> : errorMessage && <p className="errorMessage">Invalid credentials.</p>}
 
 
-            <p style={{color: "rgb(75, 89, 111)"}}>Don't have an account? <Link to="/signup">Sign up!</Link></p>
+            <p style={{color: "rgb(75, 89, 111)"}}>Don't have an account? <Link to="/signup">Sign up</Link></p>
         </form>
         </div>
     </div>
