@@ -40,7 +40,7 @@ class BoardRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Board[] Returns an array of Board objects
+//     * @return board[] Returns an array of board objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class BoardRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Board
+//    public function findOneBySomeField($value): ?board
 //    {
 //        return $this->createQueryBuilder('b')
 //            ->andWhere('b.exampleField = :val')
