@@ -11,21 +11,22 @@ import reportWebVitals from './reportWebVitals';
 import SignUpPage from "./pages/Sign Up /SignUpPage";
 import BoardPage from "./pages/BoardPage/BoardPage";
 import Home from "./pages/Home/Home";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-  <BrowserRouter>
-    <Routes>
-      {/*<Route path="/" element={<Private><div>Protected piece</div></Private>}></Route>*/}
-      <Route path="/" element={<Home></Home>}></Route>
-      <Route path="/signup" element={<SignUpPage></SignUpPage>}></Route>
-      <Route path="/signin" element={<Login></Login>}></Route>
-      <Route path="/board/create" element={<CreateNewBoard/>}/>
-      <Route path="/board" element={<BoardPage/>}/>
-      <Route path="*" element={<Private><Navigate replace to="/"/></Private>}/>
-    </Routes>
-  </BrowserRouter>
-  </React.StrictMode>
+    <React.StrictMode>
+        <BrowserRouter>
+            <Routes>
+                {/*<Route path="/" element={<Private><div>Protected piece</div></Private>}></Route>*/}
+                <Route path="/" element={<Home></Home>}></Route>
+                <Route path="/signup" element={<SignUpPage></SignUpPage>}></Route>
+                <Route path="/signin" element={<Login></Login>}></Route>
+                <Route path="/board/create" element={<CreateNewBoard/>}/>
+                <Route path="/board/:board_id" element={<BoardPage/>}/>
+                <Route path="*" element={<Private><Navigate replace to="/"/></Private>}/>
+            </Routes>
+        </BrowserRouter>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

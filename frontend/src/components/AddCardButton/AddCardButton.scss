@@ -1,37 +1,44 @@
-.wrapper {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+//.wrapper {
+//  //margin: 0;
+//  //padding: 0;
+//  //box-sizing: border-box;
+//
+//  .add-btn-container {
+//    border: 2px solid blue;
+//    width: 200px;
+//    height: 50px;
+//    box-sizing: border-box;
+//  }
+//
+//  .create-card-func {
+//    margin: 0;
+//    width: 200px;
+//
+//    .create-card-btns {
+//      display: flex;
+//      flex-direction: row;
+//
+//      .add-card-btn {
+//        border: none;
+//        color: var(--light);
+//        border-radius: 2px;
+//        padding: 4px 8px;
+//        background-color: var(--primary);
+//      }
+//
+//      .decline-add-card {
+//        border: none;
+//        font-size: 20px;
+//        color: var(--light-gray);
+//        background-color: var(--light);
+//      }
+//    }
+//  }
+//}
+.wrapper{
+  .create-card-func{
+    .task-textarea{
 
-  .add-btn-container {
-    border: 2px solid blue;
-    width: 200px;
-    height: 50px;
-    //box-sizing: border-box;
-  }
-
-  .create-card-func {
-    margin: 0;
-    width: 200px;
-
-    .create-card-btns {
-      display: flex;
-      flex-direction: row;
-
-      .add-card-btn {
-        border: none;
-        color: var(--light);
-        border-radius: 2px;
-        padding: 4px 8px;
-        background-color: var(--primary);
-      }
-
-      .decline-add-card {
-        border: none;
-        font-size: 20px;
-        color: var(--light-gray);
-        background-color: var(--light);
-      }
     }
   }
 }
