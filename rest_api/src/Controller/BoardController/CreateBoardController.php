@@ -23,12 +23,12 @@ class CreateBoardController extends AbstractController
         $reqBody = $request->getContent();
         $reqBody = json_decode($reqBody, true);
 
-        if(!isset($reqBody["title"])){
-            return $this->json(["error"=>"title field is required"],400);
+        if (!isset($reqBody["title"])) {
+            return $this->json(["error" => "title field is required"], 400);
         }
 
-        if(!isset($reqBody["color"])){
-            return $this->json(["error"=>"color field is required"],400);
+        if (!isset($reqBody["color"])) {
+            return $this->json(["error" => "color field is required"], 400);
         }
 
         $board = new Board();
@@ -38,7 +38,7 @@ class CreateBoardController extends AbstractController
             ->setCreated(new \DateTime())
             ->setModified(new \DateTime());
 
-        $boardRepository->add($board,true);
+        $boardRepository->add($board, true);
 
         return $this->json($boardSerializer->boardToArray($board));
     }
