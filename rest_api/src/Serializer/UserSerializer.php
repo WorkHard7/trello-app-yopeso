@@ -13,7 +13,6 @@ class UserSerializer
             'email' => $user->getEmail(),
             'firstName' => $user->getFirstName(),
             'lastName' => $user->getLastName(),
-            'password' => $user->getPassword(),
             'created' => $user->getDateCreated()->getTimestamp(),
             'modified' => $user->getDateModified()->getTimestamp()
         ];
