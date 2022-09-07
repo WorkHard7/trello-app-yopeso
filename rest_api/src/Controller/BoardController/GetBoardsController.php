@@ -9,11 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class GetBoardListingController extends AbstractController
+class GetBoardsController extends AbstractController
 {
     /**
      * @Route("/api/boards",
-     *      name="app_get_board_listing",
+     *      name="app_get_boards",
      *     methods={"GET"})
      */
     public function index(
