@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './LoginCard.scss'
 import axios from 'axios';
-import { useNavigate, Link } from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 
 export const LoginCard = () => {
 
@@ -16,11 +16,10 @@ export const LoginCard = () => {
     const [errorMessage, setErrorMessage] = useState(false);
 
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(password.length >= 8 ){
+        if (password.length >= 8) {
 
             setPasswordValidation(true);
 
@@ -29,51 +28,53 @@ export const LoginCard = () => {
                     username: `${email}`,
                     password: `${password}`
                 })
-                .then((res)=>{
-                    if (res.data.token){
+                .then((res) => {
+                    if (res.data.token) {
                         localStorage.setItem('JWT', res.data.token);
                         navigate('/')
                     }
                 }).catch(
-                err=>{
+                err => {
                     setErrorMessage(true);
                 })
 
-        } else
-        {
+        } else {
             setPasswordValidation(false);
         }
 
     }
 
 
-  return (
-    
-    <div className='login-card'>
-        <div className='content-wrapper'>
+    return (
 
-        <h2>Sign in to Task Manager</h2>
+        <div className='login-card'>
+            <div className='content-wrapper'>
 
-        <form className='login-form' onSubmit={handleSubmit}>
+                <h2>Sign in to Task Manager</h2>
 
-        <input type="email" placeholder='Enter email' className='inpt' onChange={e => setEmail(e.target.value)} required/>
+                <form className='login-form' onSubmit={handleSubmit}>
 
-        <input type="password" placeholder='Enter password' className='inpt' required
-        
-        onChange= {e => {
-            setPassword(e.target.value)
-        } }/>
+                    <input type="email" placeholder='Enter email' className='inpt'
+                           onChange={e => setEmail(e.target.value)} required/>
 
-            <button className='btn'>Sign in</button>
+                    <input type="password" placeholder='Enter password' className='inpt' required
 
-            {!passwordValidation ? <p className="errorMessage">Password must be at least 8 characters long.</p> : errorMessage && <p className="errorMessage">Invalid credentials.</p>}
+                           onChange={e => {
+                               setPassword(e.target.value)
+                           }}/>
+
+                    <button className='btn'>Sign in</button>
+
+                    {!passwordValidation ?
+                        <p className="errorMessage">Password must be at least 8 characters long.</p> : errorMessage &&
+                        <p className="errorMessage">Invalid credentials.</p>}
 
 
-            <p style={{color: "rgb(75, 89, 111)"}}>Don't have an account? <Link to="/signup">Sign up</Link></p>
-        </form>
+                    <p style={{color: "rgb(75, 89, 111)"}}>Don't have an account? <Link to="/signup">Sign up</Link></p>
+                </form>
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
   
