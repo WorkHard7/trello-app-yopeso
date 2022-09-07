@@ -17,6 +17,7 @@ class CreateTaskListItemController extends AbstractController
     /**
      * @Route("/api/boards/{board_id}/lists/{list_id}/items",
      *      name="app_create_board_list_item",
+     *     requirements={"list_id"="\d+","board_id"="\d+"},
      *     methods={"POST"})
      */
     public function index(

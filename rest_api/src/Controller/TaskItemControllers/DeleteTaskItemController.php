@@ -15,6 +15,7 @@ class DeleteTaskItemController extends AbstractController
     /**
      * @Route("/api/boards/{board_id}/lists/{list_id}/items/{item_id}",
      *      name="app_delete_task_item",
+     *     requirements={"list_id"="\d+","board_id"="\d+","item_id"="\d+"},
      *     methods={"DELETE"})
      */
     public function index(

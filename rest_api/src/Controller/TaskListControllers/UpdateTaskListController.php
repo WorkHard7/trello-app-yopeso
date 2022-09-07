@@ -16,6 +16,7 @@ class UpdateTaskListController extends AbstractController
     /**
      * @Route("/api/boards/{board_id}/lists/{list_id}",
      *      name="app_update_board_listing",
+     *      requirements={"list_id"="\d+","board_id"="\d+"},
      *     methods={"PATCH"})
      */
     public function index(

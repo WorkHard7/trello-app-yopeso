@@ -14,6 +14,7 @@ class ListTaskListsController extends AbstractController
     /**
      * @Route("/api/boards/{board_id}/lists",
      *      name="app_list_tasklists",
+     *      requirements={"board_id"="\d+"},
      *     methods={"GET"})
      */
     public function index(
