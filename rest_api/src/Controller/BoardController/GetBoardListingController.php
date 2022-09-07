@@ -16,8 +16,9 @@ class GetBoardListingController extends AbstractController
      *      name="app_get_board_listing",
      *     methods={"GET"})
      */
-    public function index(BoardRepository $boardRepository,
-                          BoardSerializer $boardSerializer
+    public function index(
+        BoardRepository $boardRepository,
+        boardSerializer $boardSerializer
     ): Response
     {
         $user = $this->getUser();
