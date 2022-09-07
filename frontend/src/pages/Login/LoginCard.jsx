@@ -40,8 +40,8 @@ export const LoginCard = () => {
         <h2>Sign in to Task Manager</h2>
         <FormProvider {...methods} >
             <form className='login-form' onSubmit={methods.handleSubmit(handleValidSubmit)}>
-                <Input type="email" name="email" placeholder='Enter email'  validators={{ required: "Email is required" }}/>
-                <Input type="password" name="password" placeholder='Enter password' validators={ { required: "Password is required", minLength: {value: 8, message: "Password must be at least 8 chars long"} }}/>
+                <Input type="email" name="email" placeholder='Enter email'  validators={{ required: "Email is required." }}/>
+                <Input type="password" name="password" placeholder='Enter password' validators={ { required: "Password is required", minLength: {value: 8, message: "Password must be at least 8 chars long."} }}/>
                 <button className='btn'>Sign in</button>
                 {errorMessage && <p className="errorMessage">Invalid credentials.</p>}
                 <p style={{color: "rgb(75, 89, 111)"}}>Don't have an account? <Link to="/signup">Sign up</Link></p>
