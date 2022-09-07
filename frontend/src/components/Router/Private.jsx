@@ -1,12 +1,8 @@
+import {Navigate} from 'react-router-dom';
 
 export function Private({children}){
-    const userNotLoggedIn = false;
-
-    if(!userNotLoggedIn){
-        // Redirect to login
-        console.log("redirect to login");
-        return null;
-    }
+    if(!localStorage.getItem('JWT'))
+        return <Navigate replace to="/signin"/>
 
     return <>{children}</>
 }

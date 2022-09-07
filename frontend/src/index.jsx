@@ -1,6 +1,6 @@
 import './styles/index.scss';
 
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
 
 import {Login} from "./pages/Login/Login"
 import {Private} from "./components/Router/Private"
@@ -10,10 +10,8 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import SignUpPage from "./pages/Sign Up /SignUpPage";
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
   <React.StrictMode>
   <BrowserRouter>
     <Routes>
@@ -21,6 +19,7 @@ root.render(
       <Route path="/signup" element={<SignUpPage></SignUpPage>}></Route>
       <Route path="/signin" element={<Login></Login>}></Route>
       <Route path="/board/create" element={<CreateNewBoard/>}/>
+      <Route path="*" element={<Private><Navigate replace to="/"/></Private>}/>
     </Routes>
   </BrowserRouter>
   </React.StrictMode>
