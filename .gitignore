@@ -4,3 +4,12 @@
 tmp/
 node_modules
 
+/rest_api/templates/create_task_list/index.html.twig
+/rest_api/templates/create_task_list_item/index.html.twig
+/rest_api/templates/delete_task_item/index.html.twig
+/rest_api/templates/delete_task_list/index.html.twig
+/rest_api/templates/get_task_item/index.html.twig
+/rest_api/templates/get_task_list/index.html.twig
+/rest_api/templates/list_task_lists/index.html.twig
+/rest_api/templates/update_task_item/index.html.twig
+/rest_api/templates/update_task_list/index.html.twig
