@@ -1,33 +1,25 @@
-import React, {useState} from 'react'
 import './LoginCard.scss'
+
+import {FormProvider, useForm} from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import React, {useState} from 'react'
+
+import {Input} from "../../components/Input/Input";
 import axios from 'axios';
-import { useNavigate, Link } from "react-router-dom";
 
 export const LoginCard = () => {
 
+    const methods = useForm();
+    
     const navigate = useNavigate();
-
-    const [passwordValidation, setPasswordValidation] = useState(true);
-
-    const [email, setEmail] = useState('');
-
-    const [password, setPassword] = useState('');
 
     const [errorMessage, setErrorMessage] = useState(false);
 
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        if(password.length >= 8 ){
-
-            setPasswordValidation(true);
-
+    const handleValidSubmit = (values) => {
             axios.post('http://localhost:8089/api/signin',
                 {
-                    username: `${email}`,
-                    password: `${password}`
+                    username: `${values.email}`,
+                    password: `${values.password}`
                 })
                 .then((res)=>{
                     if (res.data.token){
@@ -35,15 +27,9 @@ export const LoginCard = () => {
                         navigate('/')
                     }
                 }).catch(
-                err=>{
+                ()=>{
                     setErrorMessage(true);
                 })
-
-        } else
-        {
-            setPasswordValidation(false);
-        }
-
     }
 
 
@@ -53,27 +39,16 @@ export const LoginCard = () => {
         <div className='content-wrapper'>
 
         <h2>Sign in to Task Manager</h2>
-
-        <form className='login-form' onSubmit={handleSubmit}>
-
-        <input type="email" placeholder='Enter email' className='inpt' onChange={e => setEmail(e.target.value)} required/>
-
-        <input type="password" placeholder='Enter password' className='inpt' required
-        
-        onChange= {e => {
-            setPassword(e.target.value)
-        } }/>
-
-            <button className='btn'>Sign in</button>
-
-            {!passwordValidation ? <p className="errorMessage">Password must be at least 8 characters long.</p> : errorMessage && <p className="errorMessage">Invalid credentials.</p>}
-
-
-            <p style={{color: "rgb(75, 89, 111)"}}>Don't have an account? <Link to="/signup">Sign up</Link></p>
-        </form>
+        <FormProvider {...methods} >
+            <form className='login-form' onSubmit={methods.handleSubmit(handleValidSubmit)}>
+                <Input type="email" name="email" placeholder='Enter email'  validators={{ required: "Email is required" }}/>
+                <Input type="password" name="password" placeholder='Enter password' validators={ { required: "Password is required", minLength: {value: 8, message: "Password must be at least 8 chars long"} }}/>
+                <button className='btn'>Sign in</button>
+                <p style={{color: "rgb(75, 89, 111)"}}>Don't have an account? <Link to="/signup">Sign up</Link></p>
+                {errorMessage && <p className="errorMessage">Invalid credentials.</p>}
+            </form>
+        </FormProvider>
         </div>
     </div>
   )
 }
-
-  
