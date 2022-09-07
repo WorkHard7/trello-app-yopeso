@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BoardRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,16 @@ class Board
      * @ORM\Column(type="datetime")
      */
     private $modified;
+
+    /**
+     * @ORM\OneToMany(targetEntity=TaskList::class, mappedBy="Board", orphanRemoval=true)
+     */
+    private $taskLists;
+
+    public function __construct()
+    {
+        $this->taskLists = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +115,36 @@ class Board
     public function setModified(\DateTimeInterface $modified): self
     {
         $this->modified = $modified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TaskList>
+     */
+    public function getTaskLists(): Collection
+    {
+        return $this->taskLists;
+    }
+
+    public function addTaskList(TaskList $taskList): self
+    {
+        if (!$this->taskLists->contains($taskList)) {
+            $this->taskLists[] = $taskList;
+            $taskList->setBoard($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTaskList(TaskList $taskList): self
+    {
+        if ($this->taskLists->removeElement($taskList)) {
+            // set the owning side to null (unless already changed)
+            if ($taskList->getBoard() === $this) {
+                $taskList->setBoard(null);
+            }
+        }
 
         return $this;
     }

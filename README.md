@@ -29,6 +29,18 @@
   * API Endpoint: http://localhost:8089/api/boards
   * method allowed: GET
   * parameters: none
+  
+* Tasklist:
+  * POST localhost:8089/api/boards/{board_id}/lists - create tasklist
+  * DELETE localhost:8089/api/boards/{board_id}/lists/{tasklist_id} - delete tasklist
+  * PATCH localhost:8089/api/boards/{board_id}/lists/{tasklist_id} - update tasklist
+  * GET localhost:8089/api/boards/{board_id}/lists - get tasklists of a board
+  
+* Taskitem:
+    * POST localhost:8089/api/boards/{board_id}/lists/{tasklist_id}/items - create item
+    * DELETE localhost:8089/api/boards/{board_id}/lists/{tasklist_id}/items/{item_id} - delete item
+    * PATCH localhost:8089/api/boards/{board_id}/lists/{tasklist_id}/items/{item_id} - update item
+    * GET localhost:8089/api/boards/{board_id}/lists/{tasklist_id}/items/{item_id} - get item by id 
 
 
 
