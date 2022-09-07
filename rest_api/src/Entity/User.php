@@ -37,8 +37,8 @@ class User extends AbstractType implements UserInterface
     private $firstName;
 
     /**
-     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $lastName;
 
@@ -136,13 +136,13 @@ class User extends AbstractType implements UserInterface
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
+        $metadata->addPropertyConstraint('email', new Assert\Email([
+            'message' => 'The email is not valid.',
+        ]));
+
         $metadata->addPropertyConstraint('password', new Assert\Length([
             'min' => 8,
             'minMessage' => 'Your password must be at least {{ limit }} characters long.',
-        ]));
-
-        $metadata->addPropertyConstraint('email', new Assert\Email([
-            'message' => 'The email "{{ value }} is not a valid email."',
         ]));
     }
 
