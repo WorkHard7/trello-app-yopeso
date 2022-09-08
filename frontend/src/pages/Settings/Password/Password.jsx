@@ -25,12 +25,15 @@ const Password = () => {
             })
     }
 
+    const active = 'non-active-link';
+    const inactive = 'active-link';
+
     return (
 
         <section className="password-settings-section-container">
             <Header/>
             <UserInfo/>
-            <Navigation/>
+            <Navigation inactive={inactive} active={active}/>
 
             <div className="form-wrapper">
                 <h2>Change your password</h2>
