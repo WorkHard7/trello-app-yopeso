@@ -10,6 +10,8 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import SignUpPage from "./pages/Sign Up /SignUpPage";
 import Home from "./pages/Home/Home";
+import Settings from "./pages/Settings/Settings";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -20,7 +22,9 @@ root.render(
       <Route path="/signup" element={<SignUpPage></SignUpPage>}></Route>
       <Route path="/signin" element={<Login></Login>}></Route>
       <Route path="/board/create" element={<CreateNewBoard/>}/>
+      <Route path="/board/:id" element={<Settings/>}/>
       <Route path="*" element={<Private><Navigate replace to="/"/></Private>}/>
+      <Route path="/settings/general" element={<Settings/>}/>
     </Routes>
   </BrowserRouter>
   </React.StrictMode>
