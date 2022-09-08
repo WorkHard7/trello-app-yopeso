@@ -3,7 +3,7 @@ import "./Password.scss"
 import {Header} from '../../../components/Header/Header'
 import {UserInfo} from "../../../components/Settings/UserInfo/UserInfo";
 import {Navigation} from "../../../components/Settings/Navigation/Navigation";
-import {useForm, useFormContext} from "react-hook-form";
+import {useForm} from "react-hook-form";
 import axios from "axios";
 
 
