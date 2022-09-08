@@ -23,14 +23,9 @@ export function Header() {
 
     return (
             <div className="header">
-                <button id="icon1">
-                <BsFillGrid3X3GapFill className="icon" ></BsFillGrid3X3GapFill>
-                </button>
                 <div className="logo">TaskManager
                 </div>
                 <div className="right-section">
-                    <AiOutlineInfoCircle className="icon"></AiOutlineInfoCircle>
-                    <BsBell className="icon"></BsBell>
                     <img
                         src={`https://ui-avatars.com/api/?background=random&name=${data['First name']}+${data['Last name']}&rounded=true`}/>
                 </div>
