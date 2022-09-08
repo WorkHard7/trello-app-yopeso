@@ -1,0 +1,12 @@
+.new-list-container {
+  width: 300px;
+  padding: 10px;
+  height: fit-content;
+  border: 1px solid black;
+  transition: 0.25s ease-in-out;
+  cursor: pointer;
+}
+
+.new-list-container:hover {
+  background: navajowhite;
+}

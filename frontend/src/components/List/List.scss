@@ -17,10 +17,16 @@
       border: 1px solid black;
       border-radius: 3px;
     }
+
+    p {
+      margin: 0;
+    }
+
   }
 
   .list-title {
     display: flex;
     flex-direction: row;
+    justify-content: center;
   }
 }

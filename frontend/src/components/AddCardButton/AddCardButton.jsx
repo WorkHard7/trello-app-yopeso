@@ -12,7 +12,7 @@ function AddCardButton(){
         <div className="wrapper">
             {
                 showTextArea && <div className="create-card-func">
-                <textarea placeholder="Enter the task..."></textarea>
+                <textarea placeholder="Enter the task..." className={'task-textarea'}></textarea>
                 <div className="create-card-btns">
                     <button className="add-card-btn">Add card</button>
                     <button className="decline-add-card" onClick={()=>setShowTextArea(false)}>

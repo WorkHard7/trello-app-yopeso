@@ -50,7 +50,7 @@ function Home() {
 
     const renderBoards = () => {
         if (loading) {
-            return <h1>Loading...</h1>
+            return <h3>Loading...</h3>
         }
 
         return boards.map(board => (

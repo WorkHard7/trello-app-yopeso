@@ -1,38 +1,38 @@
 .login-card {
-    width: 100%;
-    max-width: 400px;
-    min-width: 300px;
-    margin: 0 auto;
-    text-align: center;
-    box-shadow: 2px 3px 15px rgb(0, 0, 0, 0.2);
-    border-radius: 3px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 2px 3px 15px rgb(0, 0, 0, 0.2);
+  border-radius: 3px;
 
-    .content-wrapper {
-        padding: 25px 50px;
+  .content-wrapper {
+    padding: 25px 50px;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+
+    input, button {
+      margin: 5px 0;
     }
 
-    .login-form {
-        display: flex;
-        flex-direction: column;
+  }
 
-        input, button {
-            margin: 5px 0;
-        }
+  h2 {
+    margin: 15px auto;
+    color: rgb(95, 109, 131);
+  }
 
-    }
+  p {
+    font-size: var(--text-sm);
+  }
 
-        h2 {
-            margin: 15px auto;
-            color: rgb(95, 109, 131);
-        }
-
-    p{
-        font-size: var(--text-sm);
-    }
-
-    .errorMessage {
-        color: red;
-    }
+  .errorMessage {
+    color: red;
+  }
 
 }
 

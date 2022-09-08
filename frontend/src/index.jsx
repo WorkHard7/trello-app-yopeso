@@ -21,7 +21,7 @@ root.render(
                 <Route path="/" element={<Home></Home>}></Route>
                 <Route path="/signup" element={<SignUpPage></SignUpPage>}></Route>
                 <Route path="/signin" element={<Login></Login>}></Route>
-                <Route path="/board/create" element={<CreateNewBoard/>}/>
+                {/*<Route path="/board/create" element={<CreateNewBoard/>}/>*/}
                 <Route path="/board/:board_id" element={<BoardPage/>}/>
                 <Route path="*" element={<Private><Navigate replace to="/"/></Private>}/>
             </Routes>

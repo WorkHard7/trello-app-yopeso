@@ -1,14 +1,24 @@
 import React from "react";
 import './List.scss';
 import AddCardButton from "../AddCardButton/AddCardButton";
+import axios from "axios";
 
+const CREATE_CARD = ""
 
-function List() {
+function List({list}) {
+
+    const addCard = () => {
+        console.log('clicked')
+
+        axios.post()
+
+    }
+
     return (
         <div className={'list-card'}>
             <div className={'list-title'}>
-                <input type={'text'} placeholder={'Enter list title...'}/>
-                <button>+</button>
+                <p>{list.title}</p>
+                <button>Edit</button>
             </div>
             <AddCardButton/>
         </div>

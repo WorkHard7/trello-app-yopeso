@@ -14,6 +14,15 @@ function SignUpForm() {
     const navigate = useNavigate();
     const methods = useForm();
 
+    const pwdConfirmation = (confirmPwd,) => {
+        // console.log(param)
+        console.log(methods.getValues())
+        if (methods.getValues().password === confirmPwd) {
+            return false
+        }
+        return "Passwords do not match"
+    }
+
 
     const handleApiCall = (values) => {
         const capitalizedFirstName = values.firstName.charAt(0).toUpperCase() + values.firstName.slice(1);
@@ -33,9 +42,8 @@ function SignUpForm() {
             .catch(error => {
                 if (error) {
                     console.error(error);
-                    if (error.response.data === "Object(App\\Entity\\User).email:\n    Email is already taken. (code 23bd9dbf-6b9b-41cd-a99e-4844bcf3077f)\n") {
+                    if (error.response.data.email[0] === 'Email is already taken.') {
                         setInvalidEmail(true)
-                        // setTimeout(setInvalidEmail(false), 1500)
                     }
                 }
             });
@@ -65,7 +73,10 @@ function SignUpForm() {
                        }}/>
 
                 <Input type="password" name="confirmationPassword" placeholder='Confirm password'
-                       validators={{required: "Password confirmation is required"}}/>
+                       validators={{
+                           required: "Password confirmation is required",
+                           validate: {doesNotMatch: pwdConfirmation}
+                       }}/>
 
                 <button className='btn'>Sign up</button>
 
