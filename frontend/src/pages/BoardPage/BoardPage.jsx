@@ -51,9 +51,8 @@ function BoardPage() {
     }
 
     useEffect(() => {
-        const LISTS = `http://localhost:8089/api/boards/${board_id}/lists`
         axios
-            .get(LISTS, {
+            .get(`http://localhost:8089/api/boards/${board_id}/lists`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
