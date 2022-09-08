@@ -49,7 +49,7 @@ function BoardPage() {
     }
     return (<>
         <Header/>
-        <div className={`${{loading} ? 'container':'board-page-container'}`}>
+        <div className={'board-page-container'}>
             <div className={'lists-container'}>
                 {lists.map((list, index) => (
                     <List key={list.id + index} list={list}/>

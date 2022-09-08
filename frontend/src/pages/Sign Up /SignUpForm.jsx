@@ -15,8 +15,6 @@ function SignUpForm() {
     const methods = useForm();
 
     const pwdConfirmation = (confirmPwd,) => {
-        // console.log(param)
-        console.log(methods.getValues())
         if (methods.getValues().password === confirmPwd) {
             return false
         }
