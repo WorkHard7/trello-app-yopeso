@@ -13,11 +13,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
-class PasswordController
+class PasswordController extends AbstractController
 {
     /**
-     * @Route("/settings/security", name="app_signup_page", methods={"PATCH"})
+     * @Route("/api/settings/password", name="app_change_password", methods={"PATCH"})
      */
     public function index(Request            $request,
                           ValidatorInterface $validator,
@@ -29,32 +31,37 @@ class PasswordController
         $reqBody = $request->getContent();
         $reqBody = json_decode($reqBody, true);
         $entityManager = $managerRegistry->getManager();
-        $user = new User();
 
-        $oldPassword = ($reqBody['password']);
+        $user = $this->getUser();
 
-        if($oldPassword !== $user->getPassword()){
-            throw $this->createNotFoundException('Password doesn\'t match! Try again!');
+
+        if (!isset($reqBody['oldPassword'])) {
+            return $this->json(['error' => 'oldPassword required'], 400);
+        }
+        $oldPassword = ($reqBody['oldPassword']);
+
+
+        if (!password_verify($oldPassword, $user->getPassword())) {
+            return $this->json(['error' => 'oldPassword doesn\'t match'], 400);
         }
 
-        if (isset($reqBody['password'])) {
-            $user->setPassword($reqBody['password']);
+        if (!isset($reqBody['newPassword'])) {
+            return $this->json(['error' => 'newPassword required'], 400);
         }
 
-        $confirmPassword;
-
-
-        $user->setPassword($reqBody['password']);
-
-        $errors = $validator->validate($user);
-
-        if (!$storeToBeUpdated) {
-            throw $this->createNotFoundException('Store not found');
+        if (!isset($reqBody['confirmPassword'])) {
+            return $this->json(['error' => 'confirmPassword required'], 400);
         }
 
-        $user->setPassword(password_hash($reqBody['password'], PASSWORD_BCRYPT));
+        if ($reqBody['newPassword'] !== $reqBody['confirmPassword']) {
+            return $this->json(['error' => "Password doesn't match"], 400);
+        }
 
-        $userRepository->add($user, true);
+        $user->setPassword(password_hash($reqBody['newPassword'], PASSWORD_BCRYPT));
+
+
+        $entityManager->persist($user);
+        $entityManager->flush();
 
         return $this->json($userSerializer->userToArray($user));
     }

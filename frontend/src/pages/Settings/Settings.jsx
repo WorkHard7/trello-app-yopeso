@@ -18,13 +18,7 @@ const Settings = () => {
             {
                 first_name: `${values.first_name}`,
                 last_name: `${values.last_name}`
-            })
-            .then((res) => {
-                if (res.data.token) {
-                    localStorage.setItem('JWT', res.data.token);
-                    navigate('/')
-                }
-            })
+            }).catch(error => console.log(error))
     }
 
     const active = 'active-link';
