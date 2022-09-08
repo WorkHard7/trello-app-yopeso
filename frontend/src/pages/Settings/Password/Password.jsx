@@ -40,6 +40,17 @@ const Password = () => {
                     <form className="password-change-form" onSubmit={handleSubmit(onSubmit)}>
 
                         <input className="inpt" type="password"
+                               placeholder="Enter current password"
+                               {...register("current-password", {
+                                   required: 'This field is required.',
+                                   minLength: {
+                                       value: 8,
+                                       message: "The password should be at least 8 characters long."
+                                   }
+                               })} />
+                        {errors["current-password"]?.message && <span className="errorMessage">{errors["current-password"]?.message}</span> }
+
+                        <input className="inpt" type="password"
                                placeholder="Enter the new password"
                                {...register("password", {
                             required: 'This field is required.',
