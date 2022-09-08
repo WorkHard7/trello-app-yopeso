@@ -25,12 +25,16 @@ const Password = () => {
                 })
     }
 
+    const active = 'non-active-link';
+    const inactive = 'active-link';
+
     return (
 
         <section className="password-settings-section-container">
             <Header/>
             <UserInfo/>
-            <Navigation/>
+            <Navigation inactive={inactive} active={active}/>
+
             <div className="form-wrapper">
                 <h2>Change your password</h2>
                     <form className="password-change-form" onSubmit={handleSubmit(onSubmit)}>
@@ -43,10 +47,8 @@ const Password = () => {
                                 value: 8,
                                 message: "The password should be at least 8 characters long."
                             }
-
                         })} />
                         {errors["password"]?.message && <span className="errorMessage">{errors["password"]?.message}</span> }
-
 
                         <input className="inpt" type="password"
                                placeholder="Confirm the new password"
