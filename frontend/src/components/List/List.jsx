@@ -52,7 +52,7 @@ function List({board_id, token, list, cardInput, inputHandler}) {
                 </div>
             </div>
             {itemCardItems.map((card) => (
-                <div key={card.id}>{card.title}</div>
+                <div className={'task-container'} key={card.id}>{card.title}</div>
             ))}
             <AddCardButton addCard={addCard} cardInput={cardInput} inputHandler={inputHandler}/>
         </div>

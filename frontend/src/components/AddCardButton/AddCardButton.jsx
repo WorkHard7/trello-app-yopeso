@@ -27,7 +27,7 @@ function AddCardButton({inputHandler, cardInput, addCard}) {
             }
             {
                 !showTextArea && <div className="add-btn-container">
-                    <button onClick={() => setShowTextArea(true)}>
+                    <button className={'add-btn'} onClick={() => setShowTextArea(true)}>
                         <FontAwesomeIcon icon={faPlus}/>
                         &nbsp;Add a card
                     </button>

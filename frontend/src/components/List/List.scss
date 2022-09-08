@@ -41,3 +41,17 @@
     }
   }
 }
+
+.list-card {
+  .task-container {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-content: center;
+    background: var(--light);
+    align-items: center;
+    padding: 10px;
+    margin: 5px 0 5px 0;
+    border-radius: 3px;
+  }
+}
