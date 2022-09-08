@@ -73,7 +73,7 @@ function SignUpForm() {
                 <Input type="password" name="confirmationPassword" placeholder='Confirm password'
                        validators={{
                            required: "Password confirmation is required",
-                           validate: {doesNotMatch: pwdConfirmation}
+                           // validate: {doesNotMatch: pwdConfirmation}
                        }}/>
 
                 <button className='btn'>Sign up</button>

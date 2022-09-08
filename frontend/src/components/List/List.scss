@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   height: 300px;
-  width: 300px;
-  border: 2px solid black;
+  width: 270px;
   padding: 20px;
   box-sizing: content-box;
   margin: 0 10px 0 10px;
+  border-radius: 7px;
+  background-color: rgb(235, 236, 240);
 }
 
 .list-card {
@@ -20,13 +21,23 @@
 
     p {
       margin: 0;
+      font-size: 18px;
+      font-weight: 700;
     }
-
   }
 
   .list-title {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
+
+  }
+
+  .list-title {
+    .edit-icon {
+      margin: 1px 20px;
+      color: var(--light-gray);
+      cursor: pointer;
+    }
   }
 }
