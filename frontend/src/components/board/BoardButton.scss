@@ -26,7 +26,7 @@ html {
   padding-left: 14vw;
 }
 
-.create-board-main{
+.create-board-main {
   display: flex;
   flex-wrap: wrap;
 }
@@ -91,7 +91,7 @@ html {
       transition: all 0.3s ease-in-out;
       background-color: RGBA(3, 61, 252, .5);
       color: white;
-      margin-top: 3rem ;
+      margin-top: 3rem;
     }
   }
 }
@@ -106,7 +106,6 @@ html {
   cursor: pointer;
   border-radius: 3px;
   transition: all .5s ease-in-out;
-
 
 
   &:hover {

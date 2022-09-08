@@ -40,6 +40,16 @@ const Password = () => {
                 <FormProvider {...methods} >
                     <form className="password-change-form" onSubmit={methods.handleSubmit(handleValidSubmit)}>
                         <input className="inpt" type="password"
+                               placeholder='Enter old password'
+                               {...register("oldPassword",{
+                                   required: true,
+                                   minLength:
+                                       {
+                                           value: 8,
+                                           message: "Password must be at least 8 chars long."
+                                       }
+                               })}/>
+                        <input className="inpt" type="password"
                                placeholder='Enter new password'
                                {...register("newPassword",{
                                    required: true,
