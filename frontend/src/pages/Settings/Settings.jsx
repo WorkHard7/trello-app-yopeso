@@ -4,6 +4,8 @@ import {FormProvider, useForm} from "react-hook-form";
 import {Input} from "../../components/Input/Input";
 import axios from 'axios';
 import './Settings.scss';
+import {UserInfo} from "../../components/Settings/UserInfo/UserInfo";
+import {Navigation} from "../../components/Settings/Navigation/Navigation";
 
 const Settings = () => {
 
@@ -25,12 +27,17 @@ const Settings = () => {
             })
     }
 
+    const active = 'active-link';
+    const inactive = 'non-active-link';
+
     return (
         <>
             <Header/>
+            <UserInfo/>
+            <Navigation active={active} inactive={inactive}/>
             <div className='about-section'>
                 <div className='content-about'>
-                    <h2>About</h2>
+                    <h2>Change your name</h2>
                     <div className={'line'}></div>
                     <FormProvider {...methods} >
                         <form className='about-form' onSubmit={methods.handleSubmit(handleValidSubmit)}>
