@@ -31,7 +31,6 @@ function Home() {
                 }
             })
             .then(res => {
-                console.log('board--->', res)
                 setBoards(res.data);
             })
             .catch(({response: {status}}) => {
@@ -58,7 +57,6 @@ function Home() {
             <button
                 className='buttonForNavigation'
                 onClick={() => {
-                    console.log(navigate)
                     navigate(`/board/${board.id}`)
                 }}
                 key={board.id}

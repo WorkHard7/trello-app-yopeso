@@ -6,20 +6,52 @@ import {Header} from "../../components/Header/Header";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import NewList from "../../components/List/NewList";
-
+import {defalutLists} from "./ApiCalls/ApiCalls";
 
 function BoardPage() {
     const [displayNewList, setDisplayNewList] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [titleInput, setTitleInput] = useState('');
+    const [cardInput, setCardInput] = useState('')
     const token = localStorage.getItem('JWT');
     const [lists, setLists] = useState([])
     const {board_id} = useParams();
 
-    // console.log('boardId--->', board_id)
-    useEffect(() => {
-        // console.log(token)
-        const LISTS = `http://localhost:8089/api/boards/${board_id}/lists`
+    const handleInputs = (e) => {
+        e.preventDefault();
+        const {id, value} = e.target;
+        if (id === 'titleInput') {
+            setTitleInput(value)
+        }
+        if (id === 'cardInput') {
+            setCardInput(value)
+        }
+    }
 
+    const addList = () => {
+        if (titleInput.length === 0) {
+            return setDisplayNewList(false)
+        }
+        axios.post(`http://localhost:8089/api/boards/${board_id}/lists`, {
+                title: titleInput,
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }
+        )
+            .then((res) => {
+                console.log(res)
+
+            })
+            .catch((err) => {
+                console.error(err)
+            })
+        setDisplayNewList(false)
+    }
+
+    useEffect(() => {
+        const LISTS = `http://localhost:8089/api/boards/${board_id}/lists`
         axios
             .get(LISTS, {
                 headers: {
@@ -27,8 +59,8 @@ function BoardPage() {
                 }
             })
             .then((res) => {
-                console.log('res--->', res)
                 if (res && res.data) {
+                    // console.log(res)
                     return setLists(res.data)
                 }
             })
@@ -38,8 +70,10 @@ function BoardPage() {
             .finally(() => {
                 setLoading(false)
             })
-    }, [])
+    }, [titleInput])
 
+
+    //----------------------
     if (loading) {
         return (
             <>
@@ -52,9 +86,12 @@ function BoardPage() {
         <div className={'board-page-container'}>
             <div className={'lists-container'}>
                 {lists.map((list, index) => (
-                    <List key={list.id + index} list={list}/>
+                    <List token={token} board_id={board_id} cardInput={cardInput} inputHandler={handleInputs}
+                          key={list.id + index} list={list}/>
                 ))}
-                <NewList displayNewList={displayNewList} setDisplayNewList={setDisplayNewList}/>
+                <NewList inputValue={titleInput} inputHandler={handleInputs} addList={addList}
+                         displayNewList={displayNewList}
+                         setDisplayNewList={setDisplayNewList}/>
             </div>
         </div>
     </>);

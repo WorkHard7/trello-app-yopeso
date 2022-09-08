@@ -1,33 +1,37 @@
 import React, {useState} from "react";
 import './AddCardButton.scss';
-import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
+import {faXmark, faPlus} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
-function AddCardButton(){
+function AddCardButton({inputHandler, cardInput, addCard}) {
 
     const [showTextArea, setShowTextArea] = useState(false);
 
-    return(
+
+    return (
 
         <div className="wrapper">
             {
                 showTextArea && <div className="create-card-func">
-                <textarea placeholder="Enter the task..." className={'task-textarea'}></textarea>
-                <div className="create-card-btns">
-                    <button className="add-card-btn">Add card</button>
-                    <button className="decline-add-card" onClick={()=>setShowTextArea(false)}>
-                        <FontAwesomeIcon icon={faXmark} />
-                    </button>
+                    <textarea
+                        id={'cardInput'} value={cardInput} onChange={inputHandler} placeholder="Enter the task..."
+                        className={'task-textarea'}></textarea>
+                    <div className="create-card-btns">
+                        <button className="add-card-btn" onClick={addCard}>Add card</button>
+                        <button className="decline-add-card" onClick={() => setShowTextArea(false)}>
+                            <FontAwesomeIcon icon={faXmark}/>
+                        </button>
+                    </div>
                 </div>
-            </div>
             }
             {
                 !showTextArea && <div className="add-btn-container">
-                <button onClick={()=>setShowTextArea(true)}>
-                    <FontAwesomeIcon icon={faPlus} />
-                    &nbsp;Add a card
-                </button>
-            </div>
+                    <button onClick={() => setShowTextArea(true)}>
+                        <FontAwesomeIcon icon={faPlus}/>
+                        &nbsp;Add a card
+                    </button>
+                </div>
             }
 
         </div>

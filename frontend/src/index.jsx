@@ -24,10 +24,12 @@ root.render(
                 {/*<Route path="/board/create" element={<CreateNewBoard/>}/>*/}
                 <Route path="/board/:board_id" element={<BoardPage/>}/>
                 <Route path="*" element={<Private><Navigate replace to="/"/></Private>}/>
+                <Route path="*" element={<Private><Navigate replace to="/board/:board_id"/></Private>}/>
             </Routes>
         </BrowserRouter>
     </React.StrictMode>
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

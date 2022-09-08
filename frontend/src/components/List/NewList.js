@@ -1,7 +1,7 @@
 import React from 'react';
 import './NewList.scss'
 
-function NewList({displayNewList, setDisplayNewList}) {
+function NewList({displayNewList, setDisplayNewList, addList, inputHandler, inputValue}) {
 
     const showAddList = () => {
         setDisplayNewList(true)
@@ -9,7 +9,6 @@ function NewList({displayNewList, setDisplayNewList}) {
     const closeAddList = () => {
         setDisplayNewList(false)
     }
-
 
     if (displayNewList === false) {
         return (<>
@@ -20,8 +19,10 @@ function NewList({displayNewList, setDisplayNewList}) {
     } else {
 
         return (<div className={'new-list-container'}>
-            <input type={'text'} placeholder={'Enter list title...'}/>
-            <button onClick={closeAddList}>x</button>
+            <input id={'titleInput'} value={inputValue} onChange={inputHandler} type={'text'}
+                   placeholder={'Enter list title...'}/>
+            <button onClick={closeAddList}>Close</button>
+            <button onClick={addList}>Add</button>
         </div>)
     }
 }

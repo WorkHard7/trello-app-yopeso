@@ -23,6 +23,7 @@ function SignUpForm() {
 
 
     const handleApiCall = (values) => {
+        // console.log('clicked')
         const capitalizedFirstName = values.firstName.charAt(0).toUpperCase() + values.firstName.slice(1);
         const capitalizedLastName = values.lastName.charAt(0).toUpperCase() + values.lastName.slice(1);
 
@@ -34,6 +35,7 @@ function SignUpForm() {
         })
             .then((response) => {
                 if (response.status === 200) {
+                    // console.log(response)
                     return navigate('/signin')
                 }
             })
@@ -73,12 +75,12 @@ function SignUpForm() {
                 <Input type="password" name="confirmationPassword" placeholder='Confirm password'
                        validators={{
                            required: "Password confirmation is required",
-                           validate: {doesNotMatch: pwdConfirmation}
+                           // validate: {doesNotMatch: pwdConfirmation}
                        }}/>
 
                 <button className='btn'>Sign up</button>
 
-                <p style={{color: "rgb(75, 89, 111)", alignSelf: "center"}}>Already have an account? <Link to="/signup">Sign
+                <p style={{color: "rgb(75, 89, 111)", alignSelf: "center"}}>Already have an account? <Link to="/signin">Sign
                     in</Link></p>
             </form>
 
