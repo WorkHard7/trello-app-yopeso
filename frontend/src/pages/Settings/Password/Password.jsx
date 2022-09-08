@@ -1,28 +1,28 @@
-import React, {useState} from 'react'
+import React from 'react'
 import "./Password.scss"
 import {Header} from '../../../components/Header/Header'
 import {UserInfo} from "../../../components/Settings/UserInfo/UserInfo";
 import {Navigation} from "../../../components/Settings/Navigation/Navigation";
-
-import {FormProvider, useForm, useFormContext} from "react-hook-form";
+import {useForm, useFormContext} from "react-hook-form";
 import axios from "axios";
 
 
 const Password = () => {
 
-    const methods = useForm();
+    const { register, formState: { errors }, handleSubmit, watch } = useForm();
 
-    const {watch, register, formState} = useForm();
+    const onSubmit = (data) => console.log(data);
+
 
     const handleValidSubmit = (values) => {
 
-        axios.patch('http://localhost:8089/api/signin',
-            {
-                password: `${values.password}`
-            })
-            .then((res) => {
-                console.log(res);
-            })
+            axios.patch('http://localhost:8089/api/signin',
+                {
+                    password: `${values.password}`
+                })
+                .then((res) => {
+                    console.log(res);
+                })
     }
 
     return (
@@ -31,39 +31,38 @@ const Password = () => {
             <Header/>
             <UserInfo/>
             <Navigation/>
-
             <div className="form-wrapper">
                 <h2>Change your password</h2>
-                <FormProvider {...methods} >
-                    <form className="password-change-form" onSubmit={methods.handleSubmit(handleValidSubmit)}>
-                        <input className="inpt" type="password"
-                               placeholder='Enter new password'
-                               {...register("newPassword",{
-                                   required: true,
-                                   minLength:
-                                       {
-                                           value: 8,
-                                           message: "Password must be at least 8 chars long."
-                                       }
-                               })}/>
-                        {formState.errors["newPassword"] && <span className="errorMessage">{formState.errors["newPassword"].message}</span>}
+                    <form className="password-change-form" onSubmit={handleSubmit(onSubmit)}>
 
                         <input className="inpt" type="password"
-                               placeholder='Repeat new password'
-                               {...register("repeatPassword", {
-                                   required: true,
-                                   validate: (val) => {
-                                       if (watch('newPassword') !== val) {
-                                           return "Your passwords do no match";
-                                       }
-                                   }
-                               })}
-                        />
-                        {formState.errors["repeatPassword"] && <span className="errorMessage">{formState.errors["repeatPassword"].message}</span>}
+                               placeholder="Enter the new password"
+                               {...register("password", {
+                            required: 'This field is required.',
+                            minLength: {
+                                value: 8,
+                                message: "The password should be at least 8 characters long."
+                            }
+
+                        })} />
+                        {errors["password"]?.message && <span className="errorMessage">{errors["password"]?.message}</span> }
+
+
+                        <input className="inpt" type="password"
+                               placeholder="Confirm the new password"
+                               {...register("confirm-password", {
+                            required: 'This field is required.',
+                            validate:(val)=>{
+                                if(watch("password")!== val){
+                                    return 'Passwords do not match!'
+                                }
+                            }
+                        })} />
+
+                        {errors["confirm-password"]?.message && <span className="errorMessage">{errors["confirm-password"]?.message}</span> }
 
                         <button className='btn'>Save</button>
                     </form>
-                </FormProvider>
             </div>
 
         </section>
