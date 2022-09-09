@@ -12,22 +12,34 @@ const Password = () => {
     const { register, formState: { errors }, handleSubmit, watch } = useForm();
 
     const onSubmit = (data) => console.log(data);
-
+    const [status,setStatus] = useState();
+    const [message,setMessage] = useState();
 
     const handleValidSubmit = (values) => {
+        let data = {
+            oldPassword: `${values.oldPassword}`,
+            newPassword: `${values.newPassword}`,
+            confirmPassword: `${values.repeatPassword}`
+        }
 
-            axios.patch('http://localhost:8089/api/signin',
-                {
-                    password: `${values.password}`
-                })
-                .then((res) => {
-                    console.log(res);
-                })
+        axios.patch('http://localhost:8089/api/settings/password',
+            data,{
+            headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('JWT') //the token is a variable which holds the token
+                }
+            })
+            .then((res)=>{
+                setStatus(res.status);
+                methods.reset();
+            })
+            .catch((res) => {
+                setStatus(res.status)
+                setMessage(res.response.data.error);
+            })
     }
 
     const active = 'non-active-link';
     const inactive = 'active-link';
-
     return (
 
         <section className="password-settings-section-container">
@@ -40,40 +52,41 @@ const Password = () => {
                     <form className="password-change-form" onSubmit={handleSubmit(onSubmit)}>
 
                         <input className="inpt" type="password"
-                               placeholder="Enter current password"
-                               {...register("current-password", {
-                                   required: 'This field is required.',
-                                   minLength: {
-                                       value: 8,
-                                       message: "The password should be at least 8 characters long."
+                               placeholder='Enter old password'
+                               {...methods.register("oldPassword",{
+                                   required: true,
+                                   minLength:
+                                       {
+                                           value: 8,
+                                           message: "Password must be at least 8 chars long."
+                                       }
+                               })}
+                        />
+                        <input className="inpt" type="password"
+                               placeholder='Enter new password'
+                               {...methods.register("newPassword",{
+                                   required: true,
+                                   minLength:
+                                       {
+                                           value: 8,
+                                           message: "Password must be at least 8 chars long."
+                                       }
+                               })}/>
+                        {methods.formState.errors["newPassword"] && <span className="errorMessage">{methods.formState.errors["newPassword"].message}</span>}
+
+                        <input className="inpt" type="password"
+                               placeholder='Repeat new password'
+                               {...methods.register("repeatPassword", {
+                                   required: true,
+                                   validate: (val) => {
+                                       if (methods.watch('newPassword') !== val) {
+                                           return "Your passwords do not match.";
+                                       }
                                    }
-                               })} />
-                        {errors["current-password"]?.message && <span className="errorMessage">{errors["current-password"]?.message}</span> }
-
-                        <input className="inpt" type="password"
-                               placeholder="Enter the new password"
-                               {...register("password", {
-                            required: 'This field is required.',
-                            minLength: {
-                                value: 8,
-                                message: "The password should be at least 8 characters long."
-                            }
-                        })} />
-                        {errors["password"]?.message && <span className="errorMessage">{errors["password"]?.message}</span> }
-
-                        <input className="inpt" type="password"
-                               placeholder="Confirm the new password"
-                               {...register("confirm-password", {
-                            required: 'This field is required.',
-                            validate:(val)=>{
-                                if(watch("password")!== val){
-                                    return 'Passwords do not match!'
-                                }
-                            }
-                        })} />
-
-                        {errors["confirm-password"]?.message && <span className="errorMessage">{errors["confirm-password"]?.message}</span> }
-
+                               })}
+                        />
+                        {methods.formState.errors["repeatPassword"] && <span className="errorMessage">{methods.formState.errors["repeatPassword"].message}</span>}
+                        {status && (status==200)?<p className={"succesfulMessage"}>Password saved succesfully!</p>:<p className={"errorMessage"}>{message}</p>}
                         <button className='btn'>Save</button>
                     </form>
             </div>
