@@ -14,7 +14,7 @@ const Settings = () => {
     const navigate = useNavigate();
 
     const handleValidSubmit = (values) => {
-        axios.patch('http://localhost:8089/',
+        axios.patch('http://localhost:8089/api/settings/general',
             {
                 first_name: `${values.first_name}`,
                 last_name: `${values.last_name}`

@@ -1,17 +1,17 @@
-import React, {useState} from 'react'
+import React from 'react'
 import "./Password.scss"
 import {Header} from '../../../components/Header/Header'
 import {UserInfo} from "../../../components/Settings/UserInfo/UserInfo";
 import {Navigation} from "../../../components/Settings/Navigation/Navigation";
-
-import {FormProvider, useForm, useFormContext} from "react-hook-form";
+import {useForm} from "react-hook-form";
 import axios from "axios";
 
 
 const Password = () => {
 
-    const methods = useForm();
+    const { register, formState: { errors }, handleSubmit, watch } = useForm();
 
+    const onSubmit = (data) => console.log(data);
     const [status,setStatus] = useState();
     const [message,setMessage] = useState();
 
@@ -49,8 +49,8 @@ const Password = () => {
 
             <div className="form-wrapper">
                 <h2>Change your password</h2>
-                <FormProvider {...methods} >
-                    <form className="password-change-form" onSubmit={methods.handleSubmit(handleValidSubmit)}>
+                    <form className="password-change-form" onSubmit={handleSubmit(onSubmit)}>
+
                         <input className="inpt" type="password"
                                placeholder='Enter old password'
                                {...methods.register("oldPassword",{
@@ -89,7 +89,6 @@ const Password = () => {
                         {status && (status==200)?<p className={"succesfulMessage"}>Password saved succesfully!</p>:<p className={"errorMessage"}>{message}</p>}
                         <button className='btn'>Save</button>
                     </form>
-                </FormProvider>
             </div>
 
         </section>

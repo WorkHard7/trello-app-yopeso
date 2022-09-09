@@ -10,7 +10,7 @@ function SignUpPage() {
         <div className='signup-body'>
             <div className='signup-header'>
                 <Logo/>
-                <h1>Trello</h1>
+                <h1>Tasks</h1>
             </div>
             <SignUpForm/>
         </div>

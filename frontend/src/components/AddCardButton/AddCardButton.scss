@@ -1,0 +1,60 @@
+.wrapper {
+  margin: 10px 0;
+}
+
+.wrapper {
+
+  .add-btn {
+    border: none;
+    padding: 3px;
+    background-color: rgb(235, 236, 240);
+    border-radius: 2px;
+    width: 100%;
+    text-align: start;
+    color: var(--light-gray);
+  }
+
+  .add-btn:hover {
+    background-color: rgba(178, 185, 197, 0.4);
+  }
+
+}
+
+.create-card-func {
+  textarea {
+    resize: none;
+    outline: none;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    overflow: scroll;
+    height: fit-content;
+    //overflow: scroll;
+    box-shadow: 0px 1px 0px rgba(178, 185, 197, 0.8);
+  }
+}
+
+.create-card-btns {
+  margin: 4px 0px;
+  display: flex;
+  width: 42%;
+  justify-content: space-between;
+}
+
+.create-card-btns {
+  .add-card-btn {
+    color: white;
+    background-color: var(--primary);
+    border: none;
+    border-radius: 2px;
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .decline-add-card {
+    color: var(--light-gray);
+    border: none;
+    font-size: 20px;
+    font-weight: 400;
+  }
+}
