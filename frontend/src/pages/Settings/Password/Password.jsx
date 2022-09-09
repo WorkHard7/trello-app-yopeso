@@ -53,7 +53,7 @@ const Password = () => {
                         <input className="inpt" type="password"
                                placeholder='Enter old password'
                                {...methods.register("oldPassword",{
-                                   required: true,
+                                   required: 'This field is required.',
                                    minLength:
                                        {
                                            value: 8,
@@ -66,7 +66,7 @@ const Password = () => {
                         <input className="inpt" type="password"
                                placeholder='Enter new password'
                                {...methods.register("newPassword",{
-                                   required: true,
+                                   required: 'This field is required.',
                                    minLength:
                                        {
                                            value: 8,
@@ -78,7 +78,7 @@ const Password = () => {
                         <input className="inpt" type="password"
                                placeholder='Repeat new password'
                                {...methods.register("repeatPassword", {
-                                   required: true,
+                                   required: 'This field is required.',
                                    validate: (val) => {
                                        if (methods.watch('newPassword') !== val) {
                                            return "Your passwords do not match.";
