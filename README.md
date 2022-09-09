@@ -29,13 +29,36 @@
   * API Endpoint: http://localhost:8089/api/boards
   * method allowed: GET
   * parameters: none
+
+
+
+* General settings page: http://localhost:3000/settings/general
+    * API Endpoint: http://localhost:8089/api/settings/general
+    * method allowed: PATCH
+    * parameters:
+       * first name: string
+       * last name: string
+
+
+
+* Password settings page: http://localhost:3000/settings/general
+    * API Endpoint: http://localhost:8089/api/settings/password
+    * method allowed: PATCH
+    * parameters:
+        * old password (mandatory): string
+        * new password (mandatory): string
+        * confirm password (mandatory): string
   
+
+
 * Tasklist:
   * POST localhost:8089/api/boards/{board_id}/lists - create tasklist
   * DELETE localhost:8089/api/boards/{board_id}/lists/{tasklist_id} - delete tasklist
   * PATCH localhost:8089/api/boards/{board_id}/lists/{tasklist_id} - update tasklist
   * GET localhost:8089/api/boards/{board_id}/lists - get tasklists of a board
   
+
+
 * Taskitem:
     * POST localhost:8089/api/boards/{board_id}/lists/{tasklist_id}/items - create item
     * DELETE localhost:8089/api/boards/{board_id}/lists/{tasklist_id}/items/{item_id} - delete item
