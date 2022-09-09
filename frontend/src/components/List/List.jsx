@@ -4,7 +4,6 @@ import AddCardButton from "../AddCardButton/AddCardButton";
 import axios from "axios";
 import {faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import Loading from "../Loading/Loading";
 
 function List({board_id, token, list, cardInput, inputHandler, getAllLists}) {
 
@@ -74,20 +73,19 @@ function List({board_id, token, list, cardInput, inputHandler, getAllLists}) {
 
         <div className={'list-card'}>
 
-            {loading && <Loading/>}
-            {!loading &&
-                <div className={'list-title'}>
-                    <p>{list.title}</p>
-                    <div className={'edit-icon'}>
-                        <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
-                        <FontAwesomeIcon onClick={deleteList} icon={faTrash}></FontAwesomeIcon>
-                    </div>
-                </div>}
 
-            {!loading && itemCardItems.map((card) => (
+            <div className={'list-title'}>
+                <p>{list.title}</p>
+                <div className={'edit-icon'}>
+                    <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
+                    <FontAwesomeIcon onClick={deleteList} icon={faTrash}></FontAwesomeIcon>
+                </div>
+            </div>
+
+
+            {itemCardItems.map((card) => (
                 <div className={'task-container'} key={card.id}>{card.title}</div>
             ))}
-            {loading && itemCardItems && <Loading/>}
             <AddCardButton addCard={addCard} cardInput={cardInput} inputHandler={inputHandler} updating={updating}/>
         </div>
     )
