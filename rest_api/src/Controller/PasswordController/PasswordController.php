@@ -42,7 +42,7 @@ class PasswordController extends AbstractController
 
 
         if (!password_verify($oldPassword, $user->getPassword())) {
-            return $this->json(['error' => 'oldPassword doesn\'t match'], 400);
+            return $this->json(['error' => 'Old password doesn\'t match'], 400);
         }
 
         if (!isset($reqBody['newPassword'])) {
