@@ -85,8 +85,8 @@ const Password = () => {
                                })}
                         />
                         {methods.formState.errors["repeatPassword"] && <span className="errorMessage">{methods.formState.errors["repeatPassword"].message}</span>}
-                        {status && (status==200)?<p className={"succesfulMessage"}>Password saved succesfully!</p>:<p className={"errorMessage"}>{message}</p>}
                         <button className='btn'>Save</button>
+                        {status && (status==200)?<p className={"succesfulMessage"}>Password saved succesfully!</p>:<p className={"errorMessage"}>{message}</p>}
                     </form>
             </div>
 
