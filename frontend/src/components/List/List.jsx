@@ -64,7 +64,7 @@ function List({board_id, token, list, cardInput, inputHandler, getAllLists}) {
             <div className={'list-title'}>
                 <p>{list.title}</p>
                 <div className={'edit-icon'}>
-                    <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
+                    {/*<FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>*/}
                     <FontAwesomeIcon onClick={deleteList} icon={faTrash}></FontAwesomeIcon>
                 </div>
             </div>
