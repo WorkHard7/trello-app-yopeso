@@ -41,7 +41,7 @@
 
 
 
-* Password settings page: http://localhost:3000/settings/general
+* Password settings page: http://localhost:3000/settings/password
     * API Endpoint: http://localhost:8089/api/settings/password
     * method allowed: PATCH
     * parameters:
