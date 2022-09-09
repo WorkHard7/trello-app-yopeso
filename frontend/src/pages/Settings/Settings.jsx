@@ -11,6 +11,7 @@ const Settings = () => {
 
     const methods = useForm();
     const [message, setMessage] = useState(null);
+    const [error, setError] = useState(null);
 
     const handleValidSubmit = (values) => {
 
@@ -28,7 +29,7 @@ const Settings = () => {
             }, {
                 headers: headers
             }).then((res) => setMessage('Name was changed!'))
-            .catch((err) => setMessage('Error during saving name'))
+            .catch((err) => setError('Error during saving name.'))
     }
 
     const active = 'active-link';
@@ -51,8 +52,8 @@ const Settings = () => {
                                 required: "Last name is required",
                             }}/>
 
-                            {message !== null ? <p style={{color: "red"}}>{message}</p> : ''}
                             <button className='btn'>Save</button>
+                            {message !== null ? <p className="succesfulMessage">{message}</p> : error !== null && <p className="errorMessage">{error}</p>}
                         </form>
                     </FormProvider>
                 </div>
