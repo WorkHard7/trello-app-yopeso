@@ -1,0 +1,19 @@
+.board-page-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: 100%;
+  width: 100%;
+}
+
+.board-page-container {
+.lists-container {
+  display: flex;
+  flex-direction: row;
+  height: fit-content;
+  width: fit-content;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  margin-top: 40px;
+}
+}
