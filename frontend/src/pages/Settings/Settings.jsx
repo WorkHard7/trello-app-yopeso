@@ -1,6 +1,5 @@
 import {Header} from "../../components/Header/Header";
-import {Link, useNavigate} from "react-router-dom";
-import {FormProvider, set, useForm} from "react-hook-form";
+import {FormProvider, useForm} from "react-hook-form";
 import {Input} from "../../components/Input/Input";
 import axios from 'axios';
 import './Settings.scss';
