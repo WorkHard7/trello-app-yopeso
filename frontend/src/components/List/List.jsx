@@ -10,6 +10,7 @@ function List({board_id, token, list, cardInput, inputHandler, getAllLists}) {
 
     const [itemCardItems, setItemCardItems] = useState(list.tasks)
     const [loading, setLoading] = useState(false);
+    const [updating, setUpdating] = useState(false);
 
     const getTask = () => {
         axios.get(`http://localhost:8089/api/boards/${board_id}/lists/${list.id}`, {
@@ -28,7 +29,7 @@ function List({board_id, token, list, cardInput, inputHandler, getAllLists}) {
     }
 
     const addCard = () => {
-        setLoading(true);
+        setUpdating(true);
         console.log("loading in addCard before post = ", loading);
         axios.post(`http://localhost:8089/api/boards/${board_id}/lists/${list.id}/items`, {
                 title: cardInput
@@ -44,8 +45,8 @@ function List({board_id, token, list, cardInput, inputHandler, getAllLists}) {
             })
             .catch((err) => {
                 console.error(err)
-            })
-        setLoading(false);
+            }).finally(() => setUpdating(false))
+
     }
 
     const deleteList = () => {
@@ -61,8 +62,12 @@ function List({board_id, token, list, cardInput, inputHandler, getAllLists}) {
             .catch((err) => {
                 console.error(err)
             })
-            .finally(() => getAllLists(board_id, token))
-        setLoading(false);
+            .finally(() => {
+                    getAllLists(board_id, token)
+                    setLoading(false)
+                }
+            )
+
     }
 
     return (
@@ -82,7 +87,7 @@ function List({board_id, token, list, cardInput, inputHandler, getAllLists}) {
                 <div className={'task-container'} key={card.id}>{card.title}</div>
             ))}
             {loading && itemCardItems && <Loading/>}
-            <AddCardButton addCard={addCard} cardInput={cardInput} inputHandler={inputHandler}/>
+            <AddCardButton addCard={addCard} cardInput={cardInput} inputHandler={inputHandler} updating={updating}/>
         </div>
     )
         ;
