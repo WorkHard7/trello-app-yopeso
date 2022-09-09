@@ -4,7 +4,7 @@ import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
-function NewList({displayNewList, setDisplayNewList, addList, inputHandler, inputValue}) {
+function NewList({displayNewList, setDisplayNewList, addList, inputHandler, inputValue, updating}) {
 
     const showAddList = () => {
         setDisplayNewList(true)
@@ -24,10 +24,10 @@ function NewList({displayNewList, setDisplayNewList, addList, inputHandler, inpu
             <div className={'new-list-container'}>
                 <input className={'list-name-field'} id={'titleInput'} value={inputValue} onChange={inputHandler}
                        type={'text'}
-                       placeholder={'Enter list title...'}/>
+                       placeholder={'Enter list title...'} disabled={updating}/>
                 <div className={'create-list-btns'}>
-                    <button className={'add-list-btn'} onClick={addList}>Add list</button>
-                    <button className={'close-add-list-btn'} onClick={closeAddList}>
+                    <button className={'add-list-btn'} onClick={addList} disabled={updating}>Add list</button>
+                    <button className={'close-add-list-btn'} onClick={closeAddList} disabled={updating}>
                         <FontAwesomeIcon icon={faXmark}/>
                     </button>
                 </div>

@@ -6,11 +6,13 @@ import {Header} from "../../components/Header/Header";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import NewList from "../../components/List/NewList";
-import {defaultToDoList} from "./ApiCalls/ApiCalls";
+import Loading from "../../components/Loading/Loading";
+import {defalutLists} from "./ApiCalls/ApiCalls";
 
 function BoardPage() {
     const [displayNewList, setDisplayNewList] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [updating, setUpdating] = useState(false);
     const [titleInput, setTitleInput] = useState('');
     const [cardInput, setCardInput] = useState('')
     const token = localStorage.getItem('JWT');
@@ -32,6 +34,7 @@ function BoardPage() {
         if (titleInput.length === 0) {
             return setDisplayNewList(false)
         }
+        setUpdating(true);
         axios.post(`http://localhost:8089/api/boards/${board_id}/lists`, {
                 title: titleInput,
             }, {
@@ -46,10 +49,16 @@ function BoardPage() {
             })
             .catch((err) => {
                 console.error(err)
-            })
-        setDisplayNewList(false)
+            }).finally(() => {
+                getAllLists(board_id, token)
+                setDisplayNewList(false)
+                setUpdating(false);
+            }
+        )
     }
+    useEffect(() => getAllLists(board_id, token), [])
     const getAllLists = (boardId, token) => {
+        setLoading(true);
         axios
             .get(`http://localhost:8089/api/boards/${board_id}/lists`, {
                 headers: {
@@ -69,34 +78,27 @@ function BoardPage() {
                 setLoading(false)
             })
     }
-    useEffect(() => {
-        // defaultToDoList(board_id, token);
-        getAllLists(board_id, token)
-    }, [titleInput])
 
 
-    //----------------------
-    if (loading) {
-        return (
-            <>
-                <h3>Loading...</h3>
-            </>
-        )
-    }
     return (<>
         <Header/>
-        <div className={'board-page-container'}>
-            <div className={'lists-container'}>
-                {lists.map((list, index) => (
-                    <List getAllLists={getAllLists} token={token} board_id={board_id} cardInput={cardInput}
-                          inputHandler={handleInputs}
-                          key={list.id + index} list={list}/>
-                ))}
-                <NewList inputValue={titleInput} inputHandler={handleInputs} addList={addList}
-                         displayNewList={displayNewList}
-                         setDisplayNewList={setDisplayNewList}/>
+        {loading && <Loading/>}
+        {!loading &&
+            < div className={'board-page-container'}>
+                <div className={'lists-container'}>
+                    {lists.map((list, index) => (
+                        <List getAllLists={getAllLists} token={token} board_id={board_id} cardInput={cardInput}
+                              inputHandler={handleInputs}
+                              key={list.id + index} list={list}/>
+                    ))}
+
+                    <NewList inputValue={titleInput} inputHandler={handleInputs} addList={addList}
+                             displayNewList={displayNewList}
+                             setDisplayNewList={setDisplayNewList}
+                             updating={updating}/>
+                </div>
             </div>
-        </div>
+        }
     </>);
 }
 
