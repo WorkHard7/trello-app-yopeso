@@ -10,7 +10,6 @@ function AddCardButton({inputHandler, cardInput, addCard, updating}) {
 
 
     return (
-
         <div className="wrapper">
             {
                 showTextArea && <div className="create-card-func">

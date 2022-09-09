@@ -73,6 +73,7 @@ function List({board_id, token, list, cardInput, inputHandler, getAllLists}) {
     return (
 
         <div className={'list-card'}>
+
             {loading && <Loading/>}
             {!loading &&
                 <div className={'list-title'}>

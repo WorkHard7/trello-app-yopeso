@@ -29,13 +29,13 @@
   .list-title {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-
+    justify-content: space-between;
+    margin: 0px 10px;
   }
 
   .list-title {
     .edit-icon {
-      margin: 1px 20px;
+      margin: 1px 0px;
       color: var(--light-gray);
       cursor: pointer;
     }
@@ -53,5 +53,9 @@
     padding: 10px;
     margin: 5px 0 5px 0;
     border-radius: 3px;
+  }
+
+  .task-container:hover {
+    background-color: rgba(255, 255, 255, 0.50);
   }
 }
