@@ -1,9 +1,9 @@
 .errorMessage {
   color: red;
-  font-size: 12px;
+  font-size: var(--text-xsm);
 }
 
 .succesfulMessage {
   color: green;
-  font-size: 12px;
+  font-size: var(--text-xsm);
 }
