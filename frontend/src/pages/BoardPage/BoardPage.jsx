@@ -6,11 +6,12 @@ import {Header} from "../../components/Header/Header";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import NewList from "../../components/List/NewList";
+import Loading from "../../components/Loading/Loading";
 import {defalutLists} from "./ApiCalls/ApiCalls";
 
 function BoardPage() {
     const [displayNewList, setDisplayNewList] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [titleInput, setTitleInput] = useState('');
     const [cardInput, setCardInput] = useState('')
     const token = localStorage.getItem('JWT');
@@ -50,6 +51,7 @@ function BoardPage() {
         setDisplayNewList(false)
     }
     const getAllLists = (boardId, token) => {
+        setLoading(true);
         axios
             .get(`http://localhost:8089/api/boards/${board_id}/lists`, {
                 headers: {
@@ -73,29 +75,23 @@ function BoardPage() {
         getAllLists(board_id, token)
     }, [titleInput])
 
-
-    //----------------------
-    if (loading) {
-        return (
-            <>
-                <h3>Loading...</h3>
-            </>
-        )
-    }
     return (<>
         <Header/>
-        <div className={'board-page-container'}>
-            <div className={'lists-container'}>
-                {lists.map((list, index) => (
-                    <List getAllLists={getAllLists} token={token} board_id={board_id} cardInput={cardInput}
-                          inputHandler={handleInputs}
-                          key={list.id + index} list={list}/>
-                ))}
-                <NewList inputValue={titleInput} inputHandler={handleInputs} addList={addList}
-                         displayNewList={displayNewList}
-                         setDisplayNewList={setDisplayNewList}/>
+        {loading && <Loading/>}
+        {!loading &&
+            < div className={'board-page-container'}>
+                <div className={'lists-container'}>
+                    {lists.map((list, index) => (
+                        <List getAllLists={getAllLists} token={token} board_id={board_id} cardInput={cardInput}
+                              inputHandler={handleInputs}
+                              key={list.id + index} list={list}/>
+                    ))}
+                    <NewList inputValue={titleInput} inputHandler={handleInputs} addList={addList}
+                             displayNewList={displayNewList}
+                             setDisplayNewList={setDisplayNewList}/>
+                </div>
             </div>
-        </div>
+        }
     </>);
 }
 
