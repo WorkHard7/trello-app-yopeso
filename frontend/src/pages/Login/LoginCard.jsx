@@ -28,7 +28,8 @@ export const LoginCard = () => {
                         navigate('/')
                     }
                 }).catch(
-                ()=>{
+                (err)=>{
+                    if(err.response.status === 401)
                     setErrorMessage(true);
                 })
     }

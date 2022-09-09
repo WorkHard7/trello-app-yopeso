@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import "./Password.scss"
 import {Header} from '../../../components/Header/Header'
 import {UserInfo} from "../../../components/Settings/UserInfo/UserInfo";
@@ -9,9 +9,8 @@ import axios from "axios";
 
 const Password = () => {
 
-    const { register, formState: { errors }, handleSubmit, watch } = useForm();
+    const methods = useForm();
 
-    const onSubmit = (data) => console.log(data);
     const [status,setStatus] = useState();
     const [message,setMessage] = useState();
 
@@ -49,7 +48,7 @@ const Password = () => {
 
             <div className="form-wrapper">
                 <h2>Change your password</h2>
-                    <form className="password-change-form" onSubmit={handleSubmit(onSubmit)}>
+                    <form className="password-change-form" onSubmit={methods.handleSubmit(handleValidSubmit)}>
 
                         <input className="inpt" type="password"
                                placeholder='Enter old password'
