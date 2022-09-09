@@ -2,11 +2,11 @@ import React, {useEffect, useState} from "react";
 import './List.scss';
 import AddCardButton from "../AddCardButton/AddCardButton";
 import axios from "axios";
-import {faEdit} from "@fortawesome/free-solid-svg-icons";
+import {faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
-function List({board_id, token, list, cardInput, inputHandler}) {
+function List({board_id, token, list, cardInput, inputHandler, getAllLists}) {
 
     const [itemCardItems, setItemCardItems] = useState(list.tasks)
 
@@ -36,11 +36,27 @@ function List({board_id, token, list, cardInput, inputHandler}) {
             }
         )
             .then((res) => {
+                // getAllLists()
                 getTask()
             })
             .catch((err) => {
                 console.error(err)
             })
+    }
+
+    const deleteList = () => {
+        axios.delete(`http://localhost:8089/api/boards/${board_id}/lists/${list.id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }
+        )
+            .then((res) => {
+            })
+            .catch((err) => {
+                console.error(err)
+            })
+            .finally(() => getAllLists(board_id, token))
     }
 
     return (
@@ -49,6 +65,7 @@ function List({board_id, token, list, cardInput, inputHandler}) {
                 <p>{list.title}</p>
                 <div className={'edit-icon'}>
                     <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
+                    <FontAwesomeIcon onClick={deleteList} icon={faTrash}></FontAwesomeIcon>
                 </div>
             </div>
             {itemCardItems.map((card) => (

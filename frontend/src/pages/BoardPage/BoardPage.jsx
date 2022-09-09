@@ -49,8 +49,7 @@ function BoardPage() {
             })
         setDisplayNewList(false)
     }
-
-    useEffect(() => {
+    const getAllLists = (boardId, token) => {
         axios
             .get(`http://localhost:8089/api/boards/${board_id}/lists`, {
                 headers: {
@@ -69,6 +68,9 @@ function BoardPage() {
             .finally(() => {
                 setLoading(false)
             })
+    }
+    useEffect(() => {
+        getAllLists(board_id, token)
     }, [titleInput])
 
 
@@ -85,7 +87,8 @@ function BoardPage() {
         <div className={'board-page-container'}>
             <div className={'lists-container'}>
                 {lists.map((list, index) => (
-                    <List token={token} board_id={board_id} cardInput={cardInput} inputHandler={handleInputs}
+                    <List getAllLists={getAllLists} token={token} board_id={board_id} cardInput={cardInput}
+                          inputHandler={handleInputs}
                           key={list.id + index} list={list}/>
                 ))}
                 <NewList inputValue={titleInput} inputHandler={handleInputs} addList={addList}
