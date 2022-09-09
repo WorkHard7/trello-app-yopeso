@@ -61,6 +61,8 @@ const Password = () => {
                                        }
                                })}
                         />
+                        {methods.formState.errors["oldPassword"] && <span className="errorMessage">{methods.formState.errors["oldPassword"].message}</span>}
+
                         <input className="inpt" type="password"
                                placeholder='Enter new password'
                                {...methods.register("newPassword",{
