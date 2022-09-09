@@ -22,70 +22,49 @@
   }
 }
 
-.signup-card {
-  label {
-    color: rgb(95, 109, 131);
-    margin: 15px 0 5px 0;
-  }
-}
 
 .signup-card {
   box-sizing: border-box;
   width: 400px;
-  height: 600px;
+  height: fit-content;
   background: white;
   display: flex;
   flex-direction: column;
-  padding: 40px;
+  padding: 25px 50px;
   border-radius: 1%;
-  box-shadow: rgba(149, 157, 165, 0.7) 0px 8px 24px;
-  margin-bottom: 50px;
+  box-shadow: 2px 3px 15px rgb(0, 0, 0, 0.2);
 }
 
+.signup-card {
+  span {
+    color: red;
+    margin-left: 5px;
+  }
+}
 
 .signup-card {
   h2 {
-    margin: 0 auto;
-    margin-bottom: 30px;
+    margin: 15px auto;
     color: rgb(95, 109, 131);
+  }
+
+  p {
+    align-self: center;
+    font-size: var(--text-sm);
   }
 }
 
 .signup-card {
   input {
-    width: 300px;
-    height: 40px;
-    background: none;
-    border: 1px solid grey;
-    border-radius: 1%;
-  }
-
-}
-
-.signup-card {
-  .redirect-login {
-    display: flex;
-    flex-direction: row;
-    margin-top: 20px;
-  }
-}
-
-.signup-card {
-  .redirect-login h3 {
-    margin: 0 20px 0 0;
+    width: 100%;
+    margin: 5px 0;
   }
 }
 
 .signup-card {
   button {
-    padding: 10px;
-    margin: 0 auto;
-    margin-top: 20px;
-    background: rgb(18, 123, 189);
-    border: none;
-    border-radius: 3px;
-    color: white;
-    transition: 0.25s ease-in-out;
+    margin: 5px 0;
+    width: 100%;
   }
 
   button:hover {

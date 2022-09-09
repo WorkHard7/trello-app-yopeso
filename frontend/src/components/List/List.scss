@@ -1,0 +1,57 @@
+.list-card {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 250px;
+  padding: 10px;
+  box-sizing: content-box;
+  margin: 0 10px 0 10px;
+  border-radius: 4px;
+  background-color: rgb(235, 236, 240);
+}
+
+.list-card {
+  .list-title {
+    input {
+      width: 100%;
+      height: 30px;
+      border: 1px solid black;
+      border-radius: 3px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+
+  .list-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+  }
+
+  .list-title {
+    .edit-icon {
+      margin: 1px 20px;
+      color: var(--light-gray);
+      cursor: pointer;
+    }
+  }
+}
+
+.list-card {
+  .task-container {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-content: center;
+    background: var(--light);
+    align-items: center;
+    padding: 10px;
+    margin: 5px 0 5px 0;
+    border-radius: 3px;
+  }
+}

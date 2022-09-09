@@ -1,13 +1,5 @@
 :root{
     --primary: rgb(18, 123, 189);
     --light: white;
-
+    --light-gray: rgb(108,120,139);
 }
-
-@media (prefers-color-scheme: dark) {
-    :root{
-        --primary: rgb(167, 219, 252);
-        --light: black;
-    }
-}
-
