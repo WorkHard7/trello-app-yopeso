@@ -6,7 +6,7 @@ import {Header} from "../../components/Header/Header";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import NewList from "../../components/List/NewList";
-import {defalutLists} from "./ApiCalls/ApiCalls";
+import {defaultToDoList} from "./ApiCalls/ApiCalls";
 
 function BoardPage() {
     const [displayNewList, setDisplayNewList] = useState(false);
@@ -70,6 +70,7 @@ function BoardPage() {
             })
     }
     useEffect(() => {
+        // defaultToDoList(board_id, token);
         getAllLists(board_id, token)
     }, [titleInput])
 
