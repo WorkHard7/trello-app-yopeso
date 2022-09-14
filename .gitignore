@@ -3,6 +3,7 @@
 *.log
 tmp/
 node_modules
+vendor
 
 /rest_api/templates/create_task_list/index.html.twig
 /rest_api/templates/create_task_list_item/index.html.twig
