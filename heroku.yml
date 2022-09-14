@@ -1,3 +1,4 @@
 build:
   docker:
-    web: rest_api/Dockerfile
+    web_server: ./rest_api/Dockerfile
+    web_client: ./frontend/Dockerfile
