@@ -1,3 +1,7 @@
+setup:
+  addons:
+    - plan: heroku-mysql
+      as: DATABASE
 build:
   docker:
     web_server: ./rest_api/Dockerfile
